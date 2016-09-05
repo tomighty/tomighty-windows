@@ -38,6 +38,7 @@ namespace Tomighty.Windows
             eventHub.Subscribe<TimerStarted>(OnTimerStarted);
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
             eventHub.Subscribe<TimeElapsed>(OnTimeElasped);
+            eventHub.Subscribe<PomodoroCompleted>(OnPomodoroCompleted);
 
             components = new Container();
 
@@ -53,6 +54,7 @@ namespace Tomighty.Windows
 
             resetCountItem = new ToolStripMenuItem("Reset count");
             resetCountItem.Enabled = false;
+            resetCountItem.Click += OnResetPomodoroCountClick;
 
             startPomodoroItem = new ToolStripMenuItem("Pomodoro", Images.RedTomato, OnStartPomodoroClick);
             startShortBreakItem = new ToolStripMenuItem("Short break", Images.GreenTomato, OnStartShortBreakClick);
@@ -94,6 +96,7 @@ namespace Tomighty.Windows
         private void OnStartLongBreakClick(object sender, EventArgs e) => StartTimer(IntervalType.LongBreak);
         private void OnStartShortBreakClick(object sender, EventArgs e) => StartTimer(IntervalType.ShortBreak);
         private void OnStopTimerClick(object sender, EventArgs e) => Task.Run(() => pomodoroEngine.StopTimer());
+        private void OnResetPomodoroCountClick(object sender, EventArgs e) => Task.Run(() => { /*TODO: reset pomodoro count*/ });
 
         private void OnTimerStarted(TimerStarted timerStarted)
         {
@@ -122,6 +125,15 @@ namespace Tomighty.Windows
         private void OnTimeElasped(TimeElapsed timeElapsed)
         {
             UpdateContextMenu(() => UpdateRemainingTime(timeElapsed.RemainingTime));
+        }
+        
+        private void OnPomodoroCompleted(PomodoroCompleted @event)
+        {
+            UpdateContextMenu(() =>
+            {
+                pomodoroCountItem.Text = $"Completed pomodoros: {pomodoroEngine.PomodoroCount}";
+                resetCountItem.Enabled = true;
+            });
         }
 
         private void UpdateRemainingTime(Duration remainingTime)
