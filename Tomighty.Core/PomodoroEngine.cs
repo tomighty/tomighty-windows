@@ -41,7 +41,7 @@ namespace Tomighty
 
         private void OnTimerStopped(TimerStopped timerStopped)
         {
-            if (timerStopped.IntervalType == IntervalType.Pomodoro && timerStopped.RemainingTime.Seconds == 0)
+            if (timerStopped.IntervalType == IntervalType.Pomodoro && timerStopped.IsIntervalCompleted)
             {
                 PomodoroCompleted(timerStopped.Duration);
             }
