@@ -60,8 +60,9 @@ namespace Tomighty.Test
         {
             var remainingTime = Duration.Zero;
             var duration = Duration.InMinutes(25);
+            var pomodoroCompletedEvent = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
 
-            eventHub.Publish(new TimerStopped(IntervalType.Pomodoro, duration, remainingTime));
+            eventHub.Publish(pomodoroCompletedEvent);
 
             var pomodoroCompleted = eventHub.PublishedEvents<PomodoroCompleted>().Single();
             Assert.AreEqual(duration, pomodoroCompleted.Duration);
@@ -94,50 +95,42 @@ namespace Tomighty.Test
         [Test]
         public void Increase_pomodoro_count_when_timer_stops_with_zero_remaining_time()
         {
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
             userPreferences.MaxPomodoroCount.Returns(999);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(1, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(2, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(3, engine.PomodoroCount);
         }
 
         [Test]
         public void Reset_pomodoro_count_when_it_is_greater_than_limit_defined_by_user_preferences()
         {
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
             userPreferences.MaxPomodoroCount.Returns(3);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(1, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(2, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(3, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(1, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(2, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(3, engine.PomodoroCount);
 
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(1, engine.PomodoroCount);
         }
 
@@ -146,19 +139,15 @@ namespace Tomighty.Test
         {
             userPreferences.MaxPomodoroCount.Returns(3);
 
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
             // pomodoro count: 0
             Assert.AreEqual(IntervalType.ShortBreak, engine.SuggestedBreakType);
 
             // pomodoro count: 1
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(IntervalType.ShortBreak, engine.SuggestedBreakType);
 
             // pomodoro count: 2
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(IntervalType.ShortBreak, engine.SuggestedBreakType);
         }
 
@@ -167,18 +156,9 @@ namespace Tomighty.Test
         {
             userPreferences.MaxPomodoroCount.Returns(3);
 
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
-            // pomodoro count: 1
-            eventHub.Publish(timerStopped);
-            
-            // pomodoro count: 2
-            eventHub.Publish(timerStopped);
-            
-            // pomodoro count: 3
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent()); // pomodoro count: 1
+            eventHub.Publish(PomodoroCompletedEvent()); // pomodoro count: 2
+            eventHub.Publish(PomodoroCompletedEvent()); // pomodoro count: 3
 
             Assert.AreEqual(IntervalType.LongBreak, engine.SuggestedBreakType);
         }
@@ -188,13 +168,9 @@ namespace Tomighty.Test
         {
             userPreferences.MaxPomodoroCount.Returns(999);
 
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
-            eventHub.Publish(timerStopped);
-            eventHub.Publish(timerStopped);
-            eventHub.Publish(timerStopped);
+            eventHub.Publish(PomodoroCompletedEvent());
+            eventHub.Publish(PomodoroCompletedEvent());
+            eventHub.Publish(PomodoroCompletedEvent());
 
             engine.ResetPomodoroCount();
 
@@ -206,29 +182,32 @@ namespace Tomighty.Test
         {
             userPreferences.MaxPomodoroCount.Returns(3);
 
-            var remainingTime = Duration.Zero;
-            var duration = Duration.InMinutes(25);
-            var pomodoroCompleted = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
-
-            eventHub.Publish(pomodoroCompleted);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(1, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
             Assert.AreEqual(1, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
-            
-            eventHub.Publish(pomodoroCompleted);
+
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(2, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
             Assert.AreEqual(2, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
 
-            eventHub.Publish(pomodoroCompleted);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(3, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
             Assert.AreEqual(3, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
 
-            eventHub.Publish(pomodoroCompleted);
+            eventHub.Publish(PomodoroCompletedEvent());
             Assert.AreEqual(4, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
             Assert.AreEqual(1, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
 
             engine.ResetPomodoroCount();
             Assert.AreEqual(5, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
             Assert.AreEqual(0, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+        }
+
+        private static TimerStopped PomodoroCompletedEvent()
+        {
+            var remainingTime = Duration.Zero;
+            var duration = Duration.InMinutes(25);
+            return new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
         }
     }
 }
