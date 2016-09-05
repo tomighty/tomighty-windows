@@ -49,7 +49,7 @@ namespace Tomighty.Windows
             stopTimerItem = new ToolStripMenuItem("Stop", Images.Stop, OnStopTimerClick);
             stopTimerItem.Enabled = false;
 
-            pomodoroCountItem = new ToolStripMenuItem("No completed pomodoros");
+            pomodoroCountItem = new ToolStripMenuItem();
             pomodoroCountItem.Enabled = false;
 
             resetCountItem = new ToolStripMenuItem("Reset count");
@@ -84,6 +84,8 @@ namespace Tomighty.Windows
             notifyIcon.Text = "Tomighty";
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
+
+            UpdatePomodoroCount();
         }
 
         private void StartTimer(IntervalType intervalType)
@@ -96,7 +98,7 @@ namespace Tomighty.Windows
         private void OnStartLongBreakClick(object sender, EventArgs e) => StartTimer(IntervalType.LongBreak);
         private void OnStartShortBreakClick(object sender, EventArgs e) => StartTimer(IntervalType.ShortBreak);
         private void OnStopTimerClick(object sender, EventArgs e) => Task.Run(() => pomodoroEngine.StopTimer());
-        private void OnResetPomodoroCountClick(object sender, EventArgs e) => Task.Run(() => { /*TODO: reset pomodoro count*/ });
+        private void OnResetPomodoroCountClick(object sender, EventArgs e) => Task.Run(() => pomodoroEngine.ResetPomodoroCount());
 
         private void OnTimerStarted(TimerStarted timerStarted)
         {
@@ -131,9 +133,19 @@ namespace Tomighty.Windows
         {
             UpdateContextMenu(() =>
             {
-                pomodoroCountItem.Text = $"Completed pomodoros: {pomodoroEngine.PomodoroCount}";
-                resetCountItem.Enabled = true;
+                UpdatePomodoroCount();
             });
+        }
+
+        private void UpdatePomodoroCount()
+        {
+            UpdatePomodoroCount(pomodoroEngine.PomodoroCount);
+        }
+
+        private void UpdatePomodoroCount(int count)
+        {
+            pomodoroCountItem.Text = $"Completed pomodoros: {count}";
+            resetCountItem.Enabled = count > 0;
         }
 
         private void UpdateRemainingTime(Duration remainingTime)
