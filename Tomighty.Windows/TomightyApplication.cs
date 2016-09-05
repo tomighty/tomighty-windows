@@ -38,7 +38,7 @@ namespace Tomighty.Windows
             eventHub.Subscribe<TimerStarted>(OnTimerStarted);
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
             eventHub.Subscribe<TimeElapsed>(OnTimeElasped);
-            eventHub.Subscribe<PomodoroCompleted>(OnPomodoroCompleted);
+            eventHub.Subscribe<PomodoroCountChanged>(OnPomodoroCountChanged);
 
             components = new Container();
 
@@ -85,7 +85,7 @@ namespace Tomighty.Windows
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
 
-            UpdatePomodoroCount();
+            UpdatePomodoroCount(pomodoroEngine.PomodoroCount);
         }
 
         private void StartTimer(IntervalType intervalType)
@@ -129,17 +129,12 @@ namespace Tomighty.Windows
             UpdateContextMenu(() => UpdateRemainingTime(timeElapsed.RemainingTime));
         }
         
-        private void OnPomodoroCompleted(PomodoroCompleted @event)
+        private void OnPomodoroCountChanged(PomodoroCountChanged @event)
         {
             UpdateContextMenu(() =>
             {
-                UpdatePomodoroCount();
+                UpdatePomodoroCount(@event.PomodoroCount);
             });
-        }
-
-        private void UpdatePomodoroCount()
-        {
-            UpdatePomodoroCount(pomodoroEngine.PomodoroCount);
         }
 
         private void UpdatePomodoroCount(int count)
