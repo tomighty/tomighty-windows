@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="DefaultUserPreferences.cs" />
     <Compile Include="Events\PomodoroCompleted.cs" />
+    <Compile Include="Events\PomodoroCountChanged.cs" />
     <Compile Include="Events\TimeElapsed.cs" />
     <Compile Include="Events\TimerStarted.cs" />
     <Compile Include="Events\TimerStopped.cs" />

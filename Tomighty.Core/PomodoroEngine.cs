@@ -14,6 +14,7 @@ namespace Tomighty
         private readonly ITimer timer;
         private readonly IUserPreferences userPreferences;
         private readonly IEventHub eventHub;
+        private int _pomodoroCount;
 
         public PomodoroEngine(ITimer timer, IUserPreferences userPreferences, IEventHub eventHub)
         {
@@ -24,7 +25,21 @@ namespace Tomighty
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
         }
 
-        public int PomodoroCount { get; private set; }
+        public int PomodoroCount
+        {
+            get
+            {
+                return _pomodoroCount;
+            }
+            private set
+            {
+                if (value != _pomodoroCount)
+                {
+                    _pomodoroCount = value;
+                    eventHub.Publish(new PomodoroCountChanged(value));
+                }
+            }
+        }
 
         public IntervalType SuggestedBreakType => PomodoroCount != userPreferences.MaxPomodoroCount ? IntervalType.ShortBreak : IntervalType.LongBreak;
 
@@ -55,10 +70,8 @@ namespace Tomighty
 
         private void IncreasePomodoroCount()
         {
-            if (++PomodoroCount > userPreferences.MaxPomodoroCount)
-            {
-                PomodoroCount = 1;
-            }
+            var newCount = PomodoroCount + 1;
+            PomodoroCount = newCount > userPreferences.MaxPomodoroCount ? 1 : newCount;
         }
 
         public void ResetPomodoroCount()

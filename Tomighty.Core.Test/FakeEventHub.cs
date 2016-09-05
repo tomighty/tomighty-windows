@@ -21,6 +21,11 @@ namespace Tomighty.Test
             return publishedEvents.Where(e => e.GetType() == typeof(T)).Select(e => (T) e);
         }
 
+        public T LastEvent<T>()
+        {
+            return PublishedEvents<T>().LastOrDefault();
+        }
+
         public void Publish(object @event)
         {
             publishedEvents.Add(@event);

@@ -200,5 +200,35 @@ namespace Tomighty.Test
 
             Assert.AreEqual(0, engine.PomodoroCount);
         }
+
+        [Test]
+        public void Publish_event_when_pomodoro_count_changes()
+        {
+            userPreferences.MaxPomodoroCount.Returns(3);
+
+            var remainingTime = Duration.Zero;
+            var duration = Duration.InMinutes(25);
+            var pomodoroCompleted = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
+
+            eventHub.Publish(pomodoroCompleted);
+            Assert.AreEqual(1, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
+            Assert.AreEqual(1, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+            
+            eventHub.Publish(pomodoroCompleted);
+            Assert.AreEqual(2, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
+            Assert.AreEqual(2, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+
+            eventHub.Publish(pomodoroCompleted);
+            Assert.AreEqual(3, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
+            Assert.AreEqual(3, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+
+            eventHub.Publish(pomodoroCompleted);
+            Assert.AreEqual(4, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
+            Assert.AreEqual(1, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+
+            engine.ResetPomodoroCount();
+            Assert.AreEqual(5, eventHub.PublishedEvents<PomodoroCountChanged>().Count());
+            Assert.AreEqual(0, eventHub.LastEvent<PomodoroCountChanged>().PomodoroCount);
+        }
     }
 }
