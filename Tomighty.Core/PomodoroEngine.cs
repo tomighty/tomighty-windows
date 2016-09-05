@@ -5,7 +5,6 @@
 //  http://www.apache.org/licenses/LICENSE-2.0.txt
 //
 
-using System;
 using Tomighty.Events;
 
 namespace Tomighty
@@ -60,6 +59,11 @@ namespace Tomighty
             {
                 PomodoroCount = 1;
             }
+        }
+
+        public void ResetPomodoroCount()
+        {
+            PomodoroCount = 0;
         }
     }
 }

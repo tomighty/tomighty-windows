@@ -182,5 +182,23 @@ namespace Tomighty.Test
 
             Assert.AreEqual(IntervalType.LongBreak, engine.SuggestedBreakType);
         }
+
+        [Test]
+        public void Manually_reset_pomodoro_count()
+        {
+            userPreferences.MaxPomodoroCount.Returns(999);
+
+            var remainingTime = Duration.Zero;
+            var duration = Duration.InMinutes(25);
+            var timerStopped = new TimerStopped(IntervalType.Pomodoro, duration, remainingTime);
+
+            eventHub.Publish(timerStopped);
+            eventHub.Publish(timerStopped);
+            eventHub.Publish(timerStopped);
+
+            engine.ResetPomodoroCount();
+
+            Assert.AreEqual(0, engine.PomodoroCount);
+        }
     }
 }

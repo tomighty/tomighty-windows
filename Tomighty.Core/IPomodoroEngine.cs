@@ -11,6 +11,7 @@ namespace Tomighty
     {
         void StartTimer(IntervalType intervalType);
         void StopTimer();
+        void ResetPomodoroCount();
 
         int PomodoroCount { get; }
         IntervalType SuggestedBreakType { get; }
