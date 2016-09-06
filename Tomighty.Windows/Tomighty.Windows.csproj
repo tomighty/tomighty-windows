@@ -88,6 +88,12 @@
     <Compile Include="ToastController.cs" />
     <Compile Include="Toasts.cs" />
     <Compile Include="TomightyApplication.cs" />
+    <Compile Include="UserPreferencesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserPreferencesForm.Designer.cs">
+      <DependentUpon>UserPreferencesForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +106,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserPreferencesForm.resx">
+      <DependentUpon>UserPreferencesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -38,13 +38,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultUserPreferences.cs" />
     <Compile Include="Events\PomodoroCompleted.cs" />
     <Compile Include="Events\PomodoroCountChanged.cs" />
     <Compile Include="Events\TimeElapsed.cs" />
     <Compile Include="Events\TimerStarted.cs" />
     <Compile Include="Events\TimerStopped.cs" />
     <Compile Include="IEventHub.cs" />
+    <Compile Include="IMutableUserPreferences.cs" />
     <Compile Include="IntervalType.cs" />
     <Compile Include="ITimer.cs" />
     <Compile Include="IUserPreferences.cs" />
@@ -54,6 +54,7 @@
     <Compile Include="Duration.cs" />
     <Compile Include="SynchronousEventHub.cs" />
     <Compile Include="Timer.cs" />
+    <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

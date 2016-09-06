@@ -31,7 +31,7 @@ namespace Tomighty.Windows
         private readonly ToolStripMenuItem exitItem;
         private readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier("Tomighty");
 
-        public TomightyApplication(IPomodoroEngine pomodoroEngine, IEventHub eventHub)
+        public TomightyApplication(IPomodoroEngine pomodoroEngine, IUserPreferences userPreferences, IEventHub eventHub)
         {
             this.pomodoroEngine = pomodoroEngine;
 
@@ -75,7 +75,7 @@ namespace Tomighty.Windows
             contextMenu.Items.Add(startLongBreakItem);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(new ToolStripMenuItem("About Tomighty", null, (sender, evt) => new AboutForm().ShowDialog()));
-            contextMenu.Items.Add(new ToolStripMenuItem("Preferences..."));
+            contextMenu.Items.Add(new ToolStripMenuItem("Preferences...", null, (sender, evt) => new UserPreferencesForm(userPreferences).ShowDialog()));
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(exitItem);
 

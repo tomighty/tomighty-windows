@@ -20,12 +20,12 @@ namespace Tomighty.Windows
 
             IEventHub eventHub = new SynchronousEventHub();
             ITimer timer = new Timer(eventHub);
-            IUserPreferences userPreferences = new DefaultUserPreferences();
+            IUserPreferences userPreferences = new UserPreferences();
             IPomodoroEngine pomodoroEngine = new PomodoroEngine(timer, userPreferences, eventHub);
 
             new ToastController(pomodoroEngine, eventHub);
 
-            Application.Run(new TomightyApplication(pomodoroEngine, eventHub));
+            Application.Run(new TomightyApplication(pomodoroEngine, userPreferences, eventHub));
         }
     }
 }

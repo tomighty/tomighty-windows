@@ -25,6 +25,7 @@ namespace Tomighty
         }
 
         public int Seconds { get; }
+        public int Minutes => Seconds / 60;
 
         public Duration AddSeconds(int delta) => new Duration(Seconds + delta);
 

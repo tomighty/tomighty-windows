@@ -5,11 +5,14 @@
 //  http://www.apache.org/licenses/LICENSE-2.0.txt
 //
 
+using System;
+
 namespace Tomighty
 {
     public interface IUserPreferences
     {
         Duration GetIntervalDuration(IntervalType intervalType);
         int MaxPomodoroCount { get; }
+        void Update(Action<IMutableUserPreferences> action);
     }
 }
