@@ -54,7 +54,6 @@
     <Compile Include="Duration.cs" />
     <Compile Include="SynchronousEventHub.cs" />
     <Compile Include="Timer.cs" />
-    <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
