@@ -92,12 +92,6 @@ namespace Tomighty.Windows
 
             UpdatePomodoroCount(pomodoroEngine.PomodoroCount);
         }
-
-        private void StartTimer(IntervalType intervalType)
-        {
-            UpdateContextMenu(() => UpdateTimerStartItems(intervalType));
-            Task.Run(() => pomodoroEngine.StartTimer(intervalType));
-        }
         
         private void OnNotifyIconClick(object sender, EventArgs e)
         {
@@ -150,6 +144,18 @@ namespace Tomighty.Windows
                 UpdatePomodoroCount(@event.PomodoroCount);
             });
         }
+        
+        private void OnExitClick(object sender, EventArgs e)
+        {
+            components.Dispose();
+            ExitThread();
+        }
+
+        private void StartTimer(IntervalType intervalType)
+        {
+            UpdateContextMenu(() => UpdateTimerStartItems(intervalType));
+            Task.Run(() => pomodoroEngine.StartTimer(intervalType));
+        }
 
         private void UpdatePomodoroCount(int count)
         {
@@ -167,12 +173,6 @@ namespace Tomighty.Windows
             startPomodoroItem.Enabled = intervalType != IntervalType.Pomodoro;
             startShortBreakItem.Enabled = intervalType != IntervalType.ShortBreak;
             startLongBreakItem.Enabled = intervalType != IntervalType.LongBreak;
-        }
-
-        private void OnExitClick(object sender, EventArgs e)
-        {
-            components.Dispose();
-            ExitThread();
         }
 
         private void UpdateContextMenu(Action action)
