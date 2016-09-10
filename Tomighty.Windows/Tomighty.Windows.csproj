@@ -146,24 +146,12 @@
     <None Include="Resources\icon_tomato_green.ico" />
     <None Include="Resources\icon_tomato_red.ico" />
     <None Include="Resources\icon_tomato_white.ico" />
-    <Content Include="Resources\image_clock.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\image_tomato_black.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\image_tomato_blue.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\image_tomato_red.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\image_tomato_green.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\image_stop.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\image_clock.tiff" />
+    <Content Include="Resources\image_tomato_black.tiff" />
+    <Content Include="Resources\image_tomato_blue.tiff" />
+    <Content Include="Resources\image_tomato_red.tiff" />
+    <Content Include="Resources\image_tomato_green.tiff" />
+    <Content Include="Resources\image_stop.tiff" />
     <Content Include="LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
