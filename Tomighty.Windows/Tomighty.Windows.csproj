@@ -161,17 +161,16 @@
     <None Include="Resources\image_unpinned.png" />
     <None Include="Resources\image_pinned.png" />
     <None Include="Resources\image_x.png" />
-    <Content Include="Toasts\interval-completed.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Resources\Toasts\interval-completed.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Toasts\tomato-blue.png">
+    <Content Include="Resources\Toasts\image_toast_tomato_blue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Toasts\tomato-green.png">
+    <Content Include="Resources\Toasts\image_toast_tomato_green.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Toasts\tomato-red.png">
+    <Content Include="Resources\Toasts\image_toast_tomato_red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

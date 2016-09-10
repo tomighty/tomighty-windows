@@ -226,5 +226,28 @@ namespace Tomighty.Windows.Properties {
                 return ResourceManager.GetString("String_ShortBreak", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt; 
+        ///&lt;toast launch=&quot;tomighty&quot;&gt;
+        ///  &lt;visual&gt;
+        ///    &lt;binding template=&quot;ToastGeneric&quot;&gt;
+        ///      &lt;text&gt;{interval_type} completed&lt;/text&gt;
+        ///      &lt;image src=&apos;{image_src}&apos; placement=&apos;appLogoOverride&apos;/&gt;
+        ///    &lt;/binding&gt;
+        ///  &lt;/visual&gt;
+        ///  &lt;actions&gt;
+        ///    &lt;action content=&quot;{action_content}&quot; arguments=&quot;{action_args}&quot; /&gt;
+        ///    &lt;action content=&quot;Dismiss&quot; arguments=&quot;dismiss&quot; /&gt;
+        ///  &lt;/actions&gt;
+        ///  &lt;audio src=&quot;ms-winsoundevent:Notification.Reminder&quot;/&gt;
+        ///&lt;/toast&gt;
+        ///.
+        /// </summary>
+        internal static string toast_template_interval_completed {
+            get {
+                return ResourceManager.GetString("toast_template_interval_completed", resourceCulture);
+            }
+        }
     }
 }
