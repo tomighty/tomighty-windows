@@ -7,7 +7,7 @@
 
 namespace Tomighty
 {
-    public interface ITimer
+    public interface ITimer : ICountdownClock
     {
         void Start(Duration duration, IntervalType intervalType);
         void Stop();

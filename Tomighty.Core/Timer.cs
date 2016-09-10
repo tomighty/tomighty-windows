@@ -32,6 +32,8 @@ namespace Tomighty
             systemTimer.Elapsed += SystemTimerOnElapsed;
         }
 
+        public Duration RemainingTime => remainingTime;
+
         public void Start(Duration duration, IntervalType intervalType)
         {
             this.duration = duration;

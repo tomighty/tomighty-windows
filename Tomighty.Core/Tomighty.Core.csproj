@@ -43,6 +43,7 @@
     <Compile Include="Events\TimeElapsed.cs" />
     <Compile Include="Events\TimerStarted.cs" />
     <Compile Include="Events\TimerStopped.cs" />
+    <Compile Include="ICountdownClock.cs" />
     <Compile Include="IEventHub.cs" />
     <Compile Include="IMutableUserPreferences.cs" />
     <Compile Include="IntervalType.cs" />

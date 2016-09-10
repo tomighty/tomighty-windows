@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using Tomighty.Events;
 using Windows.UI.Notifications;
 
+//TODO: fix context menu's handle not created when timer is started from the timer window
+
 namespace Tomighty.Windows
 {
     internal class TomightyApplication : ApplicationContext
@@ -30,10 +32,12 @@ namespace Tomighty.Windows
         private readonly ToolStripMenuItem startLongBreakItem;
         private readonly ToolStripMenuItem exitItem;
         private readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier("Tomighty");
+        private readonly TimerWindowController timerWindow;
 
-        public TomightyApplication(IPomodoroEngine pomodoroEngine, IUserPreferences userPreferences, IEventHub eventHub)
+        public TomightyApplication(IPomodoroEngine pomodoroEngine, ICountdownClock countdownClock, IUserPreferences userPreferences, IEventHub eventHub)
         {
             this.pomodoroEngine = pomodoroEngine;
+            this.timerWindow = new TimerWindowController(pomodoroEngine, countdownClock, eventHub);
 
             eventHub.Subscribe<TimerStarted>(OnTimerStarted);
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
@@ -84,6 +88,7 @@ namespace Tomighty.Windows
             notifyIcon.Text = "Tomighty";
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
+            notifyIcon.Click += OnNotifyIconClick;
 
             UpdatePomodoroCount(pomodoroEngine.PomodoroCount);
         }
@@ -92,6 +97,15 @@ namespace Tomighty.Windows
         {
             UpdateContextMenu(() => UpdateTimerStartItems(intervalType));
             Task.Run(() => pomodoroEngine.StartTimer(intervalType));
+        }
+        
+        private void OnNotifyIconClick(object sender, EventArgs e)
+        {
+            var mouseEvent = e as MouseEventArgs;
+            if (mouseEvent.Button == MouseButtons.Left)
+            {
+                timerWindow.Toggle(Cursor.Position);
+            }
         }
 
         private void OnStartPomodoroClick(object sender, EventArgs e) => StartTimer(IntervalType.Pomodoro);
@@ -163,7 +177,8 @@ namespace Tomighty.Windows
 
         private void UpdateContextMenu(Action action)
         {
-            contextMenu.BeginInvoke(action);
+            if (contextMenu.IsHandleCreated)
+                contextMenu.BeginInvoke(action);
         }
 
         private Icon GetTrayIconFor(IntervalType intervalType)

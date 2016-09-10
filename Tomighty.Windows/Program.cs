@@ -25,7 +25,7 @@ namespace Tomighty.Windows
 
             new ToastController(pomodoroEngine, eventHub);
 
-            Application.Run(new TomightyApplication(pomodoroEngine, userPreferences, eventHub));
+            Application.Run(new TomightyApplication(pomodoroEngine, timer, userPreferences, eventHub));
         }
     }
 }
