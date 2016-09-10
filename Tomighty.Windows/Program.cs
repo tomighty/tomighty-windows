@@ -7,6 +7,8 @@
 
 using System;
 using System.Windows.Forms;
+using Tomighty.Windows.Notifications;
+using Tomighty.Windows.Preferences;
 
 namespace Tomighty.Windows
 {
@@ -19,7 +21,7 @@ namespace Tomighty.Windows
             Application.SetCompatibleTextRenderingDefault(false);
 
             IEventHub eventHub = new SynchronousEventHub();
-            ITimer timer = new Timer(eventHub);
+            ITimer timer = new Tomighty.Timer(eventHub);
             IUserPreferences userPreferences = new UserPreferences();
             IPomodoroEngine pomodoroEngine = new PomodoroEngine(timer, userPreferences, eventHub);
 

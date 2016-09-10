@@ -7,7 +7,7 @@
 
 using System.Windows.Forms;
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Preferences
 {
     public partial class UserPreferencesForm : Form
     {

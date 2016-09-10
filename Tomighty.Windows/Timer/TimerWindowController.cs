@@ -10,7 +10,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Tomighty.Events;
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Timer
 {
     internal class TimerWindowController
     {

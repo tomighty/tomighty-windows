@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 // Shamelessly copied from https://winsharp93.wordpress.com/2009/06/29/find-out-size-and-position-of-the-taskbar/
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Timer
 {
     public enum TaskbarPosition
     {

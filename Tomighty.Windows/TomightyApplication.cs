@@ -11,6 +11,9 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tomighty.Events;
+using Tomighty.Windows.About;
+using Tomighty.Windows.Preferences;
+using Tomighty.Windows.Timer;
 using Windows.UI.Notifications;
 
 //TODO: fix context menu's handle not created when timer is started from the timer window

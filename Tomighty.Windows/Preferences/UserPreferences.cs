@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Preferences
 {
     public class UserPreferences : IMutableUserPreferences
     {

@@ -5,7 +5,7 @@
 //  http://www.apache.org/licenses/LICENSE-2.0.txt
 //
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Timer
 {
     partial class TimerWindow
     {
@@ -35,10 +35,10 @@ namespace Tomighty.Windows
         /// </summary>
         private void InitializeComponent()
         {
-            this.timeLabel = new Tomighty.Windows.TimerWindow.TransparentLabel();
+            this.timeLabel = new Tomighty.Windows.Timer.TimerWindow.TransparentLabel();
             this.pinButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.titleLabel = new Tomighty.Windows.TimerWindow.TransparentLabel();
+            this.titleLabel = new Tomighty.Windows.Timer.TimerWindow.TransparentLabel();
             this.timerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 

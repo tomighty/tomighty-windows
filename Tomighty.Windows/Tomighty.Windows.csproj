@@ -80,10 +80,10 @@
     <Reference Include="Windows.UI" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="About\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="About\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IntervalTypeExtensions.cs" />
@@ -92,30 +92,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Taskbar.cs" />
-    <Compile Include="TimerWindow.cs">
+    <Compile Include="Timer\Taskbar.cs" />
+    <Compile Include="Timer\TimerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TimerWindow.Designer.cs">
+    <Compile Include="Timer\TimerWindow.Designer.cs">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimerWindowController.cs" />
-    <Compile Include="ToastController.cs" />
-    <Compile Include="Toasts.cs" />
+    <Compile Include="Timer\TimerWindowController.cs" />
+    <Compile Include="Notifications\ToastController.cs" />
+    <Compile Include="Notifications\Toasts.cs" />
     <Compile Include="TomightyApplication.cs" />
-    <Compile Include="UserPreferences.cs" />
-    <Compile Include="UserPreferencesForm.cs">
+    <Compile Include="Preferences\UserPreferences.cs" />
+    <Compile Include="Preferences\UserPreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserPreferencesForm.Designer.cs">
+    <Compile Include="Preferences\UserPreferencesForm.Designer.cs">
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutForm.resx">
+    <EmbeddedResource Include="About\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TimerWindow.resx">
+    <EmbeddedResource Include="Timer\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,7 +123,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserPreferencesForm.resx">
+    <EmbeddedResource Include="Preferences\UserPreferencesForm.resx">
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

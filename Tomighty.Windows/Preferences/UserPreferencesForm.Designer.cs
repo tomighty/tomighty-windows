@@ -5,7 +5,7 @@
 //  http://www.apache.org/licenses/LICENSE-2.0.txt
 //
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Preferences
 {
     partial class UserPreferencesForm
     {

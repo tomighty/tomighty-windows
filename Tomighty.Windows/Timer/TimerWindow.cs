@@ -9,7 +9,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Tomighty.Windows
+namespace Tomighty.Windows.Timer
 {
     public partial class TimerWindow : Form
     {
