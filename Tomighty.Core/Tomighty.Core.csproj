@@ -7,7 +7,7 @@
     <ProjectGuid>{C7FF3B3E-0CC1-4EC7-A7C1-39B6361B5895}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tomighty.Core</RootNamespace>
+    <RootNamespace>Tomighty</RootNamespace>
     <AssemblyName>Tomighty.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

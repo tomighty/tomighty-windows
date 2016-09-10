@@ -7,7 +7,7 @@
     <ProjectGuid>{CAC6A930-C0E3-422B-A49E-7DE000DC9A40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tomighty.Core.Test</RootNamespace>
+    <RootNamespace>Tomighty</RootNamespace>
     <AssemblyName>Tomighty.Core.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
