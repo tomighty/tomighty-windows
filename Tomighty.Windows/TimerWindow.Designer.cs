@@ -61,7 +61,7 @@ namespace Tomighty.Windows
             this.pinButton.CausesValidation = false;
             this.pinButton.FlatAppearance.BorderSize = 0;
             this.pinButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pinButton.Image = global::Tomighty.Windows.Properties.Resources.Image_Unpinned;
+            this.pinButton.Image = global::Tomighty.Windows.Properties.Resources.image_unpinned;
             this.pinButton.Location = new System.Drawing.Point(2, 2);
             this.pinButton.Name = "pinButton";
             this.pinButton.Size = new System.Drawing.Size(22, 23);
@@ -75,7 +75,7 @@ namespace Tomighty.Windows
             this.closeButton.CausesValidation = false;
             this.closeButton.FlatAppearance.BorderSize = 0;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Image = global::Tomighty.Windows.Properties.Resources.Image_X;
+            this.closeButton.Image = global::Tomighty.Windows.Properties.Resources.image_x;
             this.closeButton.Location = new System.Drawing.Point(95, 2);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(22, 23);

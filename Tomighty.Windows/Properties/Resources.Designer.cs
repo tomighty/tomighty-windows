@@ -63,9 +63,49 @@ namespace Tomighty.Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon Icon_RedTomato {
+        internal static System.Drawing.Icon icon_tomato_black {
             get {
-                object obj = ResourceManager.GetObject("Icon_RedTomato", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_tomato_black", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_tomato_blue {
+            get {
+                object obj = ResourceManager.GetObject("icon_tomato_blue", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_tomato_green {
+            get {
+                object obj = ResourceManager.GetObject("icon_tomato_green", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_tomato_red {
+            get {
+                object obj = ResourceManager.GetObject("icon_tomato_red", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_tomato_white {
+            get {
+                object obj = ResourceManager.GetObject("icon_tomato_white", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -73,9 +113,9 @@ namespace Tomighty.Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Image_Pinned {
+        internal static System.Drawing.Bitmap image_clock {
             get {
-                object obj = ResourceManager.GetObject("Image_Pinned", resourceCulture);
+                object obj = ResourceManager.GetObject("image_clock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +123,9 @@ namespace Tomighty.Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Image_Unpinned {
+        internal static System.Drawing.Bitmap image_pinned {
             get {
-                object obj = ResourceManager.GetObject("Image_Unpinned", resourceCulture);
+                object obj = ResourceManager.GetObject("image_pinned", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +133,69 @@ namespace Tomighty.Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Image_X {
+        internal static System.Drawing.Bitmap image_stop {
             get {
-                object obj = ResourceManager.GetObject("Image_X", resourceCulture);
+                object obj = ResourceManager.GetObject("image_stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_tomato_black {
+            get {
+                object obj = ResourceManager.GetObject("image_tomato_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_tomato_blue {
+            get {
+                object obj = ResourceManager.GetObject("image_tomato_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_tomato_green {
+            get {
+                object obj = ResourceManager.GetObject("image_tomato_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_tomato_red {
+            get {
+                object obj = ResourceManager.GetObject("image_tomato_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_unpinned {
+            get {
+                object obj = ResourceManager.GetObject("image_unpinned", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_x {
+            get {
+                object obj = ResourceManager.GetObject("image_x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

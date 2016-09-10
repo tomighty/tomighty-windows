@@ -46,11 +46,11 @@ namespace Tomighty.Windows
 
             components = new Container();
 
-            timeItem = new ToolStripMenuItem("00:00", Images.Clock);
+            timeItem = new ToolStripMenuItem("00:00", Properties.Resources.image_clock);
             timeItem.Enabled = false;
             timeItem.Font = new Font(timeItem.Font, FontStyle.Bold);
 
-            stopTimerItem = new ToolStripMenuItem("Stop", Images.Stop, OnStopTimerClick);
+            stopTimerItem = new ToolStripMenuItem("Stop", Properties.Resources.image_stop, OnStopTimerClick);
             stopTimerItem.Enabled = false;
 
             pomodoroCountItem = new ToolStripMenuItem();
@@ -60,9 +60,9 @@ namespace Tomighty.Windows
             resetCountItem.Enabled = false;
             resetCountItem.Click += OnResetPomodoroCountClick;
 
-            startPomodoroItem = new ToolStripMenuItem("Pomodoro", Images.RedTomato, OnStartPomodoroClick);
-            startShortBreakItem = new ToolStripMenuItem("Short break", Images.GreenTomato, OnStartShortBreakClick);
-            startLongBreakItem = new ToolStripMenuItem("Long break", Images.BlueTomato, OnStartLongBreakClick);
+            startPomodoroItem = new ToolStripMenuItem("Pomodoro", Properties.Resources.image_tomato_red, OnStartPomodoroClick);
+            startShortBreakItem = new ToolStripMenuItem("Short break", Properties.Resources.image_tomato_green, OnStartShortBreakClick);
+            startLongBreakItem = new ToolStripMenuItem("Long break", Properties.Resources.image_tomato_blue, OnStartLongBreakClick);
 
             exitItem = new ToolStripMenuItem("Exit");
             exitItem.Click += new EventHandler(OnExitClick);
@@ -84,7 +84,7 @@ namespace Tomighty.Windows
             contextMenu.Items.Add(exitItem);
 
             notifyIcon = new NotifyIcon(components);
-            notifyIcon.Icon = Icons.WhiteTomato;
+            notifyIcon.Icon = Properties.Resources.icon_tomato_white;
             notifyIcon.Text = "Tomighty";
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
@@ -124,7 +124,7 @@ namespace Tomighty.Windows
             UpdateContextMenu(() =>
             {
                 UpdateRemainingTime(Duration.Zero);
-                notifyIcon.Icon = Icons.WhiteTomato;
+                notifyIcon.Icon = Properties.Resources.icon_tomato_white;
                 stopTimerItem.Enabled = false;
                 startPomodoroItem.Enabled = true;
                 startShortBreakItem.Enabled = true;
@@ -183,9 +183,9 @@ namespace Tomighty.Windows
 
         private Icon GetTrayIconFor(IntervalType intervalType)
         {
-            if (intervalType == IntervalType.Pomodoro) return Icons.RedTomato;
-            if (intervalType == IntervalType.ShortBreak) return Icons.GreenTomato;
-            if (intervalType == IntervalType.LongBreak) return Icons.BlueTomato;
+            if (intervalType == IntervalType.Pomodoro) return Properties.Resources.icon_tomato_red;
+            if (intervalType == IntervalType.ShortBreak) return Properties.Resources.icon_tomato_green;
+            if (intervalType == IntervalType.LongBreak) return Properties.Resources.icon_tomato_blue;
             throw new ArgumentException($"Invalid interval type: {intervalType}");
         }
     }

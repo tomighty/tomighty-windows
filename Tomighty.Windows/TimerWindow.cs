@@ -49,7 +49,7 @@ namespace Tomighty.Windows
             InitializeComponent();
             SetTransparentBackground(pinButton);
             SetTransparentBackground(closeButton);
-            Icon = Properties.Resources.Icon_RedTomato;
+            Icon = Properties.Resources.icon_tomato_red;
 
             timeLabel.Font = new Font(SystemFonts.DefaultFont.FontFamily, 22f);
 
@@ -98,7 +98,7 @@ namespace Tomighty.Windows
 
         public void UpdatePinButtonState(bool pinned)
         {
-            pinButton.Image = pinned ? Properties.Resources.Image_Pinned : Properties.Resources.Image_Unpinned;
+            pinButton.Image = pinned ? Properties.Resources.image_pinned : Properties.Resources.image_unpinned;
         }
 
         public void Show(Point location)

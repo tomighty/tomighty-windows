@@ -52,7 +52,8 @@
     <StartupObject>Tomighty.Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icons\tomato-red.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -86,6 +87,11 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IntervalTypeExtensions.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Taskbar.cs" />
     <Compile Include="TimerWindow.cs">
       <SubType>Form</SubType>
@@ -93,8 +99,6 @@
     <Compile Include="TimerWindow.Designer.cs">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Icons.cs" />
-    <Compile Include="Images.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimerWindowController.cs" />
@@ -116,14 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UserPreferencesForm.resx">
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,37 +141,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\16x16\clock.tiff">
+    <None Include="Resources\icon_tomato_black.ico" />
+    <None Include="Resources\icon_tomato_blue.ico" />
+    <None Include="Resources\icon_tomato_green.ico" />
+    <None Include="Resources\icon_tomato_red.ico" />
+    <None Include="Resources\icon_tomato_white.ico" />
+    <Content Include="Resources\image_clock.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\16x16\tomato-black.tiff">
+    <Content Include="Resources\image_tomato_black.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\16x16\tomato-blue.tiff">
+    <Content Include="Resources\image_tomato_blue.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\16x16\tomato-red.tiff">
+    <Content Include="Resources\image_tomato_red.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\16x16\tomato-green.tiff">
+    <Content Include="Resources\image_tomato_green.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\16x16\stop.tiff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icons\tomato-black.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icons\tomato-blue.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icons\tomato-green.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icons\tomato-red.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Icons\tomato-white.ico">
+    <Content Include="Resources\image_stop.tiff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LICENSE.txt">
@@ -181,9 +170,9 @@
     <Content Include="NOTICE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\unpinned.png" />
-    <None Include="Resources\pinned.png" />
-    <None Include="Resources\x.png" />
+    <None Include="Resources\image_unpinned.png" />
+    <None Include="Resources\image_pinned.png" />
+    <None Include="Resources\image_x.png" />
     <Content Include="Toasts\interval-completed.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -216,6 +205,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
