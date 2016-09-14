@@ -7,7 +7,7 @@
 
 namespace Tomighty.Windows.About
 {
-    partial class AboutForm
+    partial class AboutWindow
     {
         /// <summary>
         /// Required designer variable.

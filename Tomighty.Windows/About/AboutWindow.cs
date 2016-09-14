@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Tomighty.Windows.About
 {
-    public partial class AboutForm : Form
+    public partial class AboutWindow : Form
     {
-        public AboutForm()
+        public AboutWindow()
         {
             InitializeComponent();
         }
