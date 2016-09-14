@@ -6,9 +6,12 @@
 //
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Tomighty.Windows.Notifications;
 using Tomighty.Windows.Preferences;
+using Tomighty.Windows.Timer;
+using Tomighty.Windows.Tray;
 
 namespace Tomighty.Windows
 {
@@ -19,15 +22,7 @@ namespace Tomighty.Windows
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            IEventHub eventHub = new SynchronousEventHub();
-            ITimer timer = new Tomighty.Timer(eventHub);
-            IUserPreferences userPreferences = new UserPreferences();
-            IPomodoroEngine pomodoroEngine = new PomodoroEngine(timer, userPreferences, eventHub);
-
-            new ToastController(pomodoroEngine, eventHub);
-
-            Application.Run(new TomightyApplication(pomodoroEngine, timer, userPreferences, eventHub));
+            Application.Run(new TomightyApplication());
         }
     }
 }

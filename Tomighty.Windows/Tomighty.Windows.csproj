@@ -86,7 +86,13 @@
     <Compile Include="About\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="About\AboutWindowPresenter.cs" />
     <Compile Include="IntervalTypeExtensions.cs" />
+    <Compile Include="Preferences\UserPreferencesPresenter.cs" />
+    <Compile Include="Tray\ITrayMenu.cs" />
+    <Compile Include="Tray\ITrayMenuMutator.cs" />
+    <Compile Include="Tray\TrayMenu.cs" />
+    <Compile Include="Tray\TrayMenuController.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,7 +107,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Timer\TimerWindowController.cs" />
+    <Compile Include="Timer\TimerWindowPresenter.cs" />
     <Compile Include="Notifications\ToastController.cs" />
     <Compile Include="Notifications\Toasts.cs" />
     <Compile Include="TomightyApplication.cs" />
@@ -112,6 +118,7 @@
     <Compile Include="Preferences\UserPreferencesForm.Designer.cs">
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tray\TrayIconController.cs" />
     <EmbeddedResource Include="About\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -12,7 +12,7 @@ using Tomighty.Events;
 
 namespace Tomighty.Windows.Timer
 {
-    internal class TimerWindowController
+    internal class TimerWindowPresenter
     {
         private readonly ICountdownClock countdownClock;
         private readonly IWindowState idleState;
@@ -29,7 +29,7 @@ namespace Tomighty.Windows.Timer
         private Taskbar _taskbar;
         private bool _isPinned;
 
-        public TimerWindowController(IPomodoroEngine pomodoroEngine, ICountdownClock countdownClock, IEventHub eventHub)
+        public TimerWindowPresenter(IPomodoroEngine pomodoroEngine, ICountdownClock countdownClock, IEventHub eventHub)
         {
             this.countdownClock = countdownClock;
 
