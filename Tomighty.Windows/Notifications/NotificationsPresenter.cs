@@ -10,12 +10,12 @@ using Windows.UI.Notifications;
 
 namespace Tomighty.Windows.Notifications
 {
-    internal class ToastController
+    internal class NotificationsPresenter
     {
         private readonly IPomodoroEngine pomodoroEngine;
         private readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier("Tomighty");
 
-        public ToastController(IPomodoroEngine pomodoroEngine, IEventHub eventHub)
+        public NotificationsPresenter(IPomodoroEngine pomodoroEngine, IEventHub eventHub)
         {
             this.pomodoroEngine = pomodoroEngine;
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);

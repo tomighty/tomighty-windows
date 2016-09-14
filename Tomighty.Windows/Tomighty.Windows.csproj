@@ -80,11 +80,11 @@
     <Reference Include="Windows.UI" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About\AboutForm.cs">
+    <Compile Include="About\AboutWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="About\AboutForm.Designer.cs">
-      <DependentUpon>AboutForm.cs</DependentUpon>
+    <Compile Include="About\AboutWindow.Designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="About\AboutWindowPresenter.cs" />
     <Compile Include="IntervalTypeExtensions.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timer\TimerWindowPresenter.cs" />
-    <Compile Include="Notifications\ToastController.cs" />
+    <Compile Include="Notifications\NotificationsPresenter.cs" />
     <Compile Include="Notifications\Toasts.cs" />
     <Compile Include="TomightyApplication.cs" />
     <Compile Include="Preferences\UserPreferences.cs" />
@@ -119,8 +119,8 @@
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tray\TrayIconController.cs" />
-    <EmbeddedResource Include="About\AboutForm.resx">
-      <DependentUpon>AboutForm.cs</DependentUpon>
+    <EmbeddedResource Include="About\AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Timer\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>

@@ -11,13 +11,13 @@ namespace Tomighty.Windows.About
 {
     internal class AboutWindowPresenter
     {
-        private AboutForm window;
+        private AboutWindow window;
 
         public void Show()
         {
             if (window == null)
             {
-                window = new AboutForm();
+                window = new AboutWindow();
                 window.FormClosed += OnWindowClosed;
             }
 
