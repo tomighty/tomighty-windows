@@ -54,9 +54,7 @@ namespace Tomighty.Windows.Preferences
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
-            this.pomodoroToast = new System.Windows.Forms.CheckBox();
-            this.shortBreakToast = new System.Windows.Forms.CheckBox();
-            this.longBreakToast = new System.Windows.Forms.CheckBox();
+            this.toastNotification = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.longBreakDurationTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shortBreakDurationTextBox)).BeginInit();
@@ -306,9 +304,7 @@ namespace Tomighty.Windows.Preferences
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.longBreakToast);
-            this.tabPage2.Controls.Add(this.shortBreakToast);
-            this.tabPage2.Controls.Add(this.pomodoroToast);
+            this.tabPage2.Controls.Add(this.toastNotification);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -323,39 +319,19 @@ namespace Tomighty.Windows.Preferences
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(13, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(207, 13);
+            this.label8.Size = new System.Drawing.Size(120, 13);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Show a toast notification when completed:";
+            this.label8.Text = "When the timer finishes:";
             // 
-            // pomodoroToast
+            // toastNotification
             // 
-            this.pomodoroToast.AutoSize = true;
-            this.pomodoroToast.Location = new System.Drawing.Point(16, 36);
-            this.pomodoroToast.Name = "pomodoroToast";
-            this.pomodoroToast.Size = new System.Drawing.Size(74, 17);
-            this.pomodoroToast.TabIndex = 1;
-            this.pomodoroToast.Text = "Pomodoro";
-            this.pomodoroToast.UseVisualStyleBackColor = true;
-            // 
-            // shortBreakToast
-            // 
-            this.shortBreakToast.AutoSize = true;
-            this.shortBreakToast.Location = new System.Drawing.Point(16, 59);
-            this.shortBreakToast.Name = "shortBreakToast";
-            this.shortBreakToast.Size = new System.Drawing.Size(81, 17);
-            this.shortBreakToast.TabIndex = 2;
-            this.shortBreakToast.Text = "Short break";
-            this.shortBreakToast.UseVisualStyleBackColor = true;
-            // 
-            // longBreakToast
-            // 
-            this.longBreakToast.AutoSize = true;
-            this.longBreakToast.Location = new System.Drawing.Point(16, 82);
-            this.longBreakToast.Name = "longBreakToast";
-            this.longBreakToast.Size = new System.Drawing.Size(80, 17);
-            this.longBreakToast.TabIndex = 3;
-            this.longBreakToast.Text = "Long break";
-            this.longBreakToast.UseVisualStyleBackColor = true;
+            this.toastNotification.AutoSize = true;
+            this.toastNotification.Location = new System.Drawing.Point(16, 36);
+            this.toastNotification.Name = "toastNotification";
+            this.toastNotification.Size = new System.Drawing.Size(142, 17);
+            this.toastNotification.TabIndex = 1;
+            this.toastNotification.Text = "Show a toast notification";
+            this.toastNotification.UseVisualStyleBackColor = true;
             // 
             // UserPreferencesForm
             // 
@@ -410,8 +386,6 @@ namespace Tomighty.Windows.Preferences
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox pomodoroToast;
-        private System.Windows.Forms.CheckBox longBreakToast;
-        private System.Windows.Forms.CheckBox shortBreakToast;
+        private System.Windows.Forms.CheckBox toastNotification;
     }
 }

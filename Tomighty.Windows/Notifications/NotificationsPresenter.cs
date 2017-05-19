@@ -25,7 +25,7 @@ namespace Tomighty.Windows.Notifications
 
         private void OnTimerStopped(TimerStopped @event)
         {
-            if (@event.IsIntervalCompleted && userPreferences.ShowToastNotificationWhenIntervalIsCompleted(@event.IntervalType))
+            if (@event.IsIntervalCompleted && userPreferences.ShowToastNotifications)
             {
                 var toast = Toasts.IntervalCompleted(@event.IntervalType, pomodoroEngine.SuggestedBreakType);
                 toast.Activated += OnToastActivated;

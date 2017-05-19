@@ -40,12 +40,7 @@ namespace Tomighty.Windows.Preferences
                 ShortBreakDuration = Duration.InMinutes(5).Seconds,
                 LongBreakDuration = Duration.InMinutes(15).Seconds,
                 MaxPomodoroCount = 4,
-                Notifications = new Dictionary<IntervalType, Notifications>
-                {
-                    { IntervalType.Pomodoro, new Notifications { Toast = true } },
-                    { IntervalType.ShortBreak, new Notifications { Toast = true } },
-                    { IntervalType.LongBreak, new Notifications { Toast = true } }
-                }
+                ShowToastNotifications = true
             };
         }
 
@@ -79,14 +74,10 @@ namespace Tomighty.Windows.Preferences
             set { values.MaxPomodoroCount = value; }
         }
 
-        public bool ShowToastNotificationWhenIntervalIsCompleted(IntervalType intervalType)
+        public bool ShowToastNotifications
         {
-            return values.Notifications[intervalType].Toast;
-        }
-        
-        public void ShowToastNotificationWhenIntervalIsCompleted(IntervalType intervalType, bool show)
-        {
-            values.Notifications[intervalType].Toast = show;
+            get { return values.ShowToastNotifications; }
+            set { values.ShowToastNotifications = value; }
         }
 
         public void Update(Action<IMutableUserPreferences> action)
@@ -102,12 +93,7 @@ namespace Tomighty.Windows.Preferences
             public int ShortBreakDuration { get; set; }
             public int LongBreakDuration { get; set; }
             public int MaxPomodoroCount { get; set; }
-            public Dictionary<IntervalType, Notifications> Notifications { get; set; }
-        }
-
-        private class Notifications
-        {
-            public bool Toast { get; set; }
+            public bool ShowToastNotifications { get; set; }
         }
     }
 }
