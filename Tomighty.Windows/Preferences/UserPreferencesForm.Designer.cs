@@ -50,12 +50,22 @@ namespace Tomighty.Windows.Preferences
             this.label7 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pomodoroToast = new System.Windows.Forms.CheckBox();
+            this.shortBreakToast = new System.Windows.Forms.CheckBox();
+            this.longBreakToast = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.longBreakDurationTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shortBreakDurationTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pomodoroDurationTextBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxPomodoroCountTextBox)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -73,10 +83,10 @@ namespace Tomighty.Windows.Preferences
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(230, 113);
+            this.groupBox1.Size = new System.Drawing.Size(229, 113);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Time";
+            this.groupBox1.Text = "Duration";
             // 
             // longBreakDurationTextBox
             // 
@@ -207,9 +217,9 @@ namespace Tomighty.Windows.Preferences
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.maxPomodoroCountTextBox);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(12, 143);
+            this.groupBox2.Location = new System.Drawing.Point(10, 132);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(231, 81);
+            this.groupBox2.Size = new System.Drawing.Size(232, 81);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Long Break Cycle";
@@ -249,7 +259,7 @@ namespace Tomighty.Windows.Preferences
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(87, 233);
+            this.okButton.Location = new System.Drawing.Point(119, 273);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 2;
@@ -261,7 +271,7 @@ namespace Tomighty.Windows.Preferences
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(168, 233);
+            this.cancelButton.Location = new System.Drawing.Point(200, 273);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -269,17 +279,94 @@ namespace Tomighty.Windows.Preferences
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.OnCancelButtonClick);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(263, 255);
+            this.tabControl1.TabIndex = 4;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(10);
+            this.tabPage1.Size = new System.Drawing.Size(255, 229);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Cycles";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.longBreakToast);
+            this.tabPage2.Controls.Add(this.shortBreakToast);
+            this.tabPage2.Controls.Add(this.pomodoroToast);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(10);
+            this.tabPage2.Size = new System.Drawing.Size(255, 229);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Notifications";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(207, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Show a toast notification when completed:";
+            // 
+            // pomodoroToast
+            // 
+            this.pomodoroToast.AutoSize = true;
+            this.pomodoroToast.Location = new System.Drawing.Point(16, 36);
+            this.pomodoroToast.Name = "pomodoroToast";
+            this.pomodoroToast.Size = new System.Drawing.Size(74, 17);
+            this.pomodoroToast.TabIndex = 1;
+            this.pomodoroToast.Text = "Pomodoro";
+            this.pomodoroToast.UseVisualStyleBackColor = true;
+            // 
+            // shortBreakToast
+            // 
+            this.shortBreakToast.AutoSize = true;
+            this.shortBreakToast.Location = new System.Drawing.Point(16, 59);
+            this.shortBreakToast.Name = "shortBreakToast";
+            this.shortBreakToast.Size = new System.Drawing.Size(81, 17);
+            this.shortBreakToast.TabIndex = 2;
+            this.shortBreakToast.Text = "Short break";
+            this.shortBreakToast.UseVisualStyleBackColor = true;
+            // 
+            // longBreakToast
+            // 
+            this.longBreakToast.AutoSize = true;
+            this.longBreakToast.Location = new System.Drawing.Point(16, 82);
+            this.longBreakToast.Name = "longBreakToast";
+            this.longBreakToast.Size = new System.Drawing.Size(80, 17);
+            this.longBreakToast.TabIndex = 3;
+            this.longBreakToast.Text = "Long break";
+            this.longBreakToast.UseVisualStyleBackColor = true;
+            // 
             // UserPreferencesForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(255, 268);
+            this.ClientSize = new System.Drawing.Size(287, 308);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -294,6 +381,10 @@ namespace Tomighty.Windows.Preferences
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxPomodoroCountTextBox)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -315,5 +406,12 @@ namespace Tomighty.Windows.Preferences
         private System.Windows.Forms.NumericUpDown pomodoroDurationTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox pomodoroToast;
+        private System.Windows.Forms.CheckBox longBreakToast;
+        private System.Windows.Forms.CheckBox shortBreakToast;
     }
 }

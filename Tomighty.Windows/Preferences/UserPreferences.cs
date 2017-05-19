@@ -7,6 +7,7 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Tomighty.Windows.Preferences
@@ -38,7 +39,13 @@ namespace Tomighty.Windows.Preferences
                 PomodoroDuration = Duration.InMinutes(25).Seconds,
                 ShortBreakDuration = Duration.InMinutes(5).Seconds,
                 LongBreakDuration = Duration.InMinutes(15).Seconds,
-                MaxPomodoroCount = 4
+                MaxPomodoroCount = 4,
+                Notifications = new Dictionary<IntervalType, Notifications>
+                {
+                    { IntervalType.Pomodoro, new Notifications { Toast = true } },
+                    { IntervalType.ShortBreak, new Notifications { Toast = true } },
+                    { IntervalType.LongBreak, new Notifications { Toast = true } }
+                }
             };
         }
 
@@ -52,7 +59,6 @@ namespace Tomighty.Windows.Preferences
 
         public Duration GetIntervalDuration(IntervalType intervalType)
         {
-
             if (intervalType == IntervalType.Pomodoro) return new Duration(values.PomodoroDuration);
             if (intervalType == IntervalType.ShortBreak) return new Duration(values.ShortBreakDuration);
             if (intervalType == IntervalType.LongBreak) return new Duration(values.LongBreakDuration);
@@ -73,6 +79,16 @@ namespace Tomighty.Windows.Preferences
             set { values.MaxPomodoroCount = value; }
         }
 
+        public bool ShowToastNotificationWhenIntervalIsCompleted(IntervalType intervalType)
+        {
+            return values.Notifications[intervalType].Toast;
+        }
+        
+        public void ShowToastNotificationWhenIntervalIsCompleted(IntervalType intervalType, bool show)
+        {
+            values.Notifications[intervalType].Toast = show;
+        }
+
         public void Update(Action<IMutableUserPreferences> action)
         {
             action(this);
@@ -86,6 +102,12 @@ namespace Tomighty.Windows.Preferences
             public int ShortBreakDuration { get; set; }
             public int LongBreakDuration { get; set; }
             public int MaxPomodoroCount { get; set; }
+            public Dictionary<IntervalType, Notifications> Notifications { get; set; }
+        }
+
+        private class Notifications
+        {
+            public bool Toast { get; set; }
         }
     }
 }

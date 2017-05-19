@@ -13,6 +13,8 @@ namespace Tomighty
     {
         Duration GetIntervalDuration(IntervalType intervalType);
         int MaxPomodoroCount { get; }
+        bool ShowToastNotificationWhenIntervalIsCompleted(IntervalType intervalType);
+
         void Update(Action<IMutableUserPreferences> action);
     }
 }
