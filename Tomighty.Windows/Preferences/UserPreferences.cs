@@ -40,7 +40,8 @@ namespace Tomighty.Windows.Preferences
                 ShortBreakDuration = Duration.InMinutes(5).Seconds,
                 LongBreakDuration = Duration.InMinutes(15).Seconds,
                 MaxPomodoroCount = 4,
-                ShowToastNotifications = true
+                ShowToastNotifications = true,
+                PlaySoundNotifications = true
             };
         }
 
@@ -80,6 +81,12 @@ namespace Tomighty.Windows.Preferences
             set { values.ShowToastNotifications = value; }
         }
 
+        public bool PlaySoundNotifications
+        {
+            get { return values.PlaySoundNotifications; }
+            set { values.PlaySoundNotifications = value; }
+        }
+
         public void Update(Action<IMutableUserPreferences> action)
         {
             action(this);
@@ -94,6 +101,7 @@ namespace Tomighty.Windows.Preferences
             public int LongBreakDuration { get; set; }
             public int MaxPomodoroCount { get; set; }
             public bool ShowToastNotifications { get; set; }
+            public bool PlaySoundNotifications { get; set; }
         }
     }
 }

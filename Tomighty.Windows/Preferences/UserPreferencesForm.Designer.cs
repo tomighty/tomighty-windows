@@ -55,6 +55,7 @@ namespace Tomighty.Windows.Preferences
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.toastNotification = new System.Windows.Forms.CheckBox();
+            this.soundNotifications = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.longBreakDurationTextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shortBreakDurationTextBox)).BeginInit();
@@ -304,6 +305,7 @@ namespace Tomighty.Windows.Preferences
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.soundNotifications);
             this.tabPage2.Controls.Add(this.toastNotification);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -332,6 +334,16 @@ namespace Tomighty.Windows.Preferences
             this.toastNotification.TabIndex = 1;
             this.toastNotification.Text = "Show a toast notification";
             this.toastNotification.UseVisualStyleBackColor = true;
+            // 
+            // soundNotifications
+            // 
+            this.soundNotifications.AutoSize = true;
+            this.soundNotifications.Location = new System.Drawing.Point(16, 59);
+            this.soundNotifications.Name = "soundNotifications";
+            this.soundNotifications.Size = new System.Drawing.Size(87, 17);
+            this.soundNotifications.TabIndex = 2;
+            this.soundNotifications.Text = "Play a sound";
+            this.soundNotifications.UseVisualStyleBackColor = true;
             // 
             // UserPreferencesForm
             // 
@@ -387,5 +399,6 @@ namespace Tomighty.Windows.Preferences
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox toastNotification;
+        private System.Windows.Forms.CheckBox soundNotifications;
     }
 }

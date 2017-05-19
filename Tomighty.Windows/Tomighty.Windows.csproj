@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="About\AboutWindowPresenter.cs" />
     <Compile Include="IntervalTypeExtensions.cs" />
+    <Compile Include="Notifications\SoundNotificationPlayer.cs" />
     <Compile Include="Preferences\UserPreferencesPresenter.cs" />
     <Compile Include="Tray\ITrayMenu.cs" />
     <Compile Include="Tray\ITrayMenuMutator.cs" />
@@ -153,6 +154,7 @@
     <None Include="Resources\icon_tomato_green.ico" />
     <None Include="Resources\icon_tomato_red.ico" />
     <None Include="Resources\icon_tomato_white.ico" />
+    <Content Include="Resources\Audio\deskbell.wav" />
     <Content Include="Resources\image_clock.tiff" />
     <Content Include="Resources\image_tomato_black.tiff" />
     <Content Include="Resources\image_tomato_blue.tiff" />
