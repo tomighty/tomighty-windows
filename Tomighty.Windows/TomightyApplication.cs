@@ -30,7 +30,8 @@ namespace Tomighty.Windows
 
             new TrayIconController(trayIcon, timerWindowPresenter, eventHub);
             new TrayMenuController(trayMenu, this, pomodoroEngine, eventHub);
-            new NotificationsPresenter(pomodoroEngine, eventHub);
+            new NotificationsPresenter(pomodoroEngine, userPreferences, eventHub);
+            new SoundNotificationPlayer(userPreferences, eventHub);
 
             var aboutWindowPresenter = new AboutWindowPresenter();
             var userPreferencesPresenter = new UserPreferencesPresenter(userPreferences);

@@ -13,17 +13,19 @@ namespace Tomighty.Windows.Notifications
     internal class NotificationsPresenter
     {
         private readonly IPomodoroEngine pomodoroEngine;
+        private readonly IUserPreferences userPreferences;
         private readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier("Tomighty");
 
-        public NotificationsPresenter(IPomodoroEngine pomodoroEngine, IEventHub eventHub)
+        public NotificationsPresenter(IPomodoroEngine pomodoroEngine, IUserPreferences userPreferences, IEventHub eventHub)
         {
             this.pomodoroEngine = pomodoroEngine;
+            this.userPreferences = userPreferences;
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
         }
 
         private void OnTimerStopped(TimerStopped @event)
         {
-            if (@event.IsIntervalCompleted)
+            if (@event.IsIntervalCompleted && userPreferences.ShowToastNotifications)
             {
                 var toast = Toasts.IntervalCompleted(@event.IntervalType, pomodoroEngine.SuggestedBreakType);
                 toast.Activated += OnToastActivated;

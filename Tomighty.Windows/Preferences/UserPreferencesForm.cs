@@ -23,6 +23,8 @@ namespace Tomighty.Windows.Preferences
             shortBreakDurationTextBox.Value = userPreferences.GetIntervalDuration(IntervalType.ShortBreak).Minutes;
             longBreakDurationTextBox.Value = userPreferences.GetIntervalDuration(IntervalType.LongBreak).Minutes;
             maxPomodoroCountTextBox.Value = userPreferences.MaxPomodoroCount;
+            toastNotification.Checked = userPreferences.ShowToastNotifications;
+            soundNotifications.Checked = userPreferences.PlaySoundNotifications;
         }
 
         private void OnCancelButtonClick(object sender, System.EventArgs e)
@@ -38,6 +40,8 @@ namespace Tomighty.Windows.Preferences
                 newPreferences.SetIntervalDuration(IntervalType.ShortBreak, Duration.InMinutes((int)shortBreakDurationTextBox.Value));
                 newPreferences.SetIntervalDuration(IntervalType.LongBreak, Duration.InMinutes((int)longBreakDurationTextBox.Value));
                 newPreferences.MaxPomodoroCount = (int)maxPomodoroCountTextBox.Value;
+                newPreferences.ShowToastNotifications = toastNotification.Checked;
+                newPreferences.PlaySoundNotifications = soundNotifications.Checked;
             });
 
             Close();

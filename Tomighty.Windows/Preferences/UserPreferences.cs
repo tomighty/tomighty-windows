@@ -7,6 +7,7 @@
 
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Tomighty.Windows.Preferences
@@ -38,7 +39,9 @@ namespace Tomighty.Windows.Preferences
                 PomodoroDuration = Duration.InMinutes(25).Seconds,
                 ShortBreakDuration = Duration.InMinutes(5).Seconds,
                 LongBreakDuration = Duration.InMinutes(15).Seconds,
-                MaxPomodoroCount = 4
+                MaxPomodoroCount = 4,
+                ShowToastNotifications = true,
+                PlaySoundNotifications = true
             };
         }
 
@@ -52,7 +55,6 @@ namespace Tomighty.Windows.Preferences
 
         public Duration GetIntervalDuration(IntervalType intervalType)
         {
-
             if (intervalType == IntervalType.Pomodoro) return new Duration(values.PomodoroDuration);
             if (intervalType == IntervalType.ShortBreak) return new Duration(values.ShortBreakDuration);
             if (intervalType == IntervalType.LongBreak) return new Duration(values.LongBreakDuration);
@@ -73,6 +75,18 @@ namespace Tomighty.Windows.Preferences
             set { values.MaxPomodoroCount = value; }
         }
 
+        public bool ShowToastNotifications
+        {
+            get { return values.ShowToastNotifications; }
+            set { values.ShowToastNotifications = value; }
+        }
+
+        public bool PlaySoundNotifications
+        {
+            get { return values.PlaySoundNotifications; }
+            set { values.PlaySoundNotifications = value; }
+        }
+
         public void Update(Action<IMutableUserPreferences> action)
         {
             action(this);
@@ -86,6 +100,8 @@ namespace Tomighty.Windows.Preferences
             public int ShortBreakDuration { get; set; }
             public int LongBreakDuration { get; set; }
             public int MaxPomodoroCount { get; set; }
+            public bool ShowToastNotifications { get; set; }
+            public bool PlaySoundNotifications { get; set; }
         }
     }
 }

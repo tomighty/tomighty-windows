@@ -10,6 +10,8 @@ namespace Tomighty
     public interface IMutableUserPreferences : IUserPreferences
     {
         void SetIntervalDuration(IntervalType intervalType, Duration duration);
+        new bool ShowToastNotifications { get; set; }
+        new bool PlaySoundNotifications { get; set; }
         new int MaxPomodoroCount { get; set; }
     }
 }
