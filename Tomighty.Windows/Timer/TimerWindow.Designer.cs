@@ -49,9 +49,9 @@ namespace Tomighty.Windows.Timer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.timeLabel.BackColor = System.Drawing.Color.Transparent;
             this.timeLabel.ForeColor = System.Drawing.Color.White;
-            this.timeLabel.Location = new System.Drawing.Point(12, 33);
+            this.timeLabel.Location = new System.Drawing.Point(12, 28);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(96, 46);
+            this.timeLabel.Size = new System.Drawing.Size(153, 67);
             this.timeLabel.TabIndex = 0;
             this.timeLabel.Text = "--:--";
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,7 +76,7 @@ namespace Tomighty.Windows.Timer
             this.closeButton.FlatAppearance.BorderSize = 0;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Image = global::Tomighty.Windows.Properties.Resources.image_x;
-            this.closeButton.Location = new System.Drawing.Point(95, 2);
+            this.closeButton.Location = new System.Drawing.Point(152, 2);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(22, 23);
             this.closeButton.TabIndex = 2;
@@ -91,7 +91,7 @@ namespace Tomighty.Windows.Timer
             this.titleLabel.ForeColor = System.Drawing.Color.White;
             this.titleLabel.Location = new System.Drawing.Point(31, 8);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(58, 30);
+            this.titleLabel.Size = new System.Drawing.Size(115, 30);
             this.titleLabel.TabIndex = 3;
             this.titleLabel.Text = "Title";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -101,13 +101,13 @@ namespace Tomighty.Windows.Timer
             this.timerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.timerButton.BackColor = System.Drawing.Color.Silver;
-            this.timerButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.timerButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.timerButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.timerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.timerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.timerButton.Location = new System.Drawing.Point(12, 85);
+            this.timerButton.Location = new System.Drawing.Point(12, 98);
             this.timerButton.Name = "timerButton";
-            this.timerButton.Size = new System.Drawing.Size(96, 23);
+            this.timerButton.Size = new System.Drawing.Size(153, 28);
             this.timerButton.TabIndex = 4;
             this.timerButton.Text = "Timer Action";
             this.timerButton.UseVisualStyleBackColor = false;
@@ -118,7 +118,7 @@ namespace Tomighty.Windows.Timer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(120, 120);
+            this.ClientSize = new System.Drawing.Size(177, 138);
             this.ControlBox = false;
             this.Controls.Add(this.timerButton);
             this.Controls.Add(this.titleLabel);

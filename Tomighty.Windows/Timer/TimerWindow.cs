@@ -7,37 +7,19 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Tomighty.Windows.Timer
 {
     public partial class TimerWindow : Form
     {
-        public static readonly ColorScheme DarkGrayColorScheme = new ColorScheme
-        (
-            fill: new SolidBrush(Color.FromArgb(31, 31, 31)),
-            border: new Pen(Color.FromArgb(41, 41, 41), 1f)
-        );
+        public static readonly Color DarkGray = Color.FromArgb(41, 41, 41);
+        public static readonly Color Red = Color.FromArgb(168, 32, 41);
+        public static readonly Color Green = Color.FromArgb(26, 102, 41);
+        public static readonly Color Blue = Color.FromArgb(22, 57, 101);
 
-        public static readonly ColorScheme RedColorScheme = new ColorScheme
-        (
-            fill: new SolidBrush(Color.FromArgb(92, 13, 11)),
-            border: new Pen(Color.FromArgb(95, 21, 13), 1f)
-        );
-
-        public static readonly ColorScheme GreenColorScheme = new ColorScheme
-        (
-            fill: new SolidBrush(Color.FromArgb(26, 102, 41)),
-            border: new Pen(Color.FromArgb(46, 103, 45), 1f)
-        );
-
-        public static readonly ColorScheme BlueColorScheme = new ColorScheme
-        (
-            fill: new SolidBrush(Color.FromArgb(22, 57, 101)),
-            border: new Pen(Color.FromArgb(22, 70, 101), 1f)
-        );
-
-        private ColorScheme currentColorScheme = DarkGrayColorScheme;
+        private ColorScheme currentColorScheme;
         private Action currentTimerAction;
 
         private readonly Action<string> UpdateTimeDisplayDelegate;
@@ -47,11 +29,14 @@ namespace Tomighty.Windows.Timer
         public TimerWindow()
         {
             InitializeComponent();
+
+            currentColorScheme = CreateColorScheme(DarkGray);
+
             SetTransparentBackground(pinButton);
             SetTransparentBackground(closeButton);
             Icon = Properties.Resources.icon_tomato_red;
 
-            timeLabel.Font = new Font(SystemFonts.DefaultFont.FontFamily, 22f);
+            timeLabel.Font = new Font(SystemFonts.DefaultFont.FontFamily, 32f);
 
             UpdateTimeDisplayDelegate = (text) => timeLabel.Text = text;
             UpdateTitleDelegate = (text) => titleLabel.Text = text;
@@ -87,13 +72,10 @@ namespace Tomighty.Windows.Timer
                 UpdateTimeDisplayDelegate(text);
         }
 
-        public void UpdateColorScheme(ColorScheme newColorScheme)
+        public void UpdateColorScheme(Color color)
         {
-            if (newColorScheme != currentColorScheme)
-            {
-                currentColorScheme = newColorScheme;
-                Invalidate();
-            }
+            currentColorScheme = CreateColorScheme(color);
+            Invalidate();
         }
 
         public void UpdatePinButtonState(bool pinned)
@@ -153,17 +135,54 @@ namespace Tomighty.Windows.Timer
         {
             currentTimerAction?.Invoke();
         }
+        
+        public ColorScheme CreateColorScheme(Color color)
+        {
+            return new ColorScheme
+            (
+                fill: CreateGradientBrush(color),
+                border: new Pen(Darker(color), 1f)
+            );
+        }
+
+        private Brush CreateGradientBrush(Color color)
+        {
+            return new LinearGradientBrush(
+                new Point(),
+                new Point(0, Height),
+                Brighter(color),
+                Darker(color)
+            );
+        }
+
+        private Color Darker(Color color)
+        {
+            return AdjustBrightness(color, -40);
+        }
+
+        private Color Brighter(Color color)
+        {
+            return AdjustBrightness(color, 20);
+        }
+
+        private static Color AdjustBrightness(Color color, int offset)
+        {
+            var r = Math.Max(0, color.R + offset);
+            var g = Math.Max(0, color.G + offset);
+            var b = Math.Max(0, color.B + offset);
+            return Color.FromArgb(r, g, b);
+        }
     }
 
     public class ColorScheme
     {
-        public ColorScheme(SolidBrush fill, Pen border)
+        public ColorScheme(Brush fill, Pen border)
         {
             Fill = fill;
             Border = border;
         }
 
-        public SolidBrush Fill { get; }
+        public Brush Fill { get; }
         public Pen Border { get; }
     }
 }
