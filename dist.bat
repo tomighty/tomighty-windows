@@ -59,7 +59,6 @@ xcopy /f LICENSE.txt %dest%
 xcopy /f NOTICE.txt %dest%
 xcopy /f %src%\Tomighty.Windows.exe %dest%
 xcopy /f %src%\Tomighty.Core.dll %dest%
-xcopy /f %src%\Newtonsoft.Json.dll %dest%
 xcopy /f %src%\Microsoft.Toolkit.Uwp.Notifications.dll %dest%
 xcopy /f /s %src%\Resources %dest%\Resources
 
