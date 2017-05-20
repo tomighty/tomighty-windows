@@ -101,7 +101,7 @@ namespace Tomighty.Windows.Timer
             this.timerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.timerButton.BackColor = System.Drawing.Color.Silver;
-            this.timerButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.timerButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.timerButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.timerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.timerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
