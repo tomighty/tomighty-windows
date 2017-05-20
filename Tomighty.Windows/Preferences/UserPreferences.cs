@@ -31,7 +31,14 @@ namespace Tomighty.Windows.Preferences
 
             using (var file = File.OpenRead(FilePath))
             {
-                return ReplaceInvalidSettingsWithDefaultValues((Values)Json.ReadObject(file));
+                try
+                {
+                    return ReplaceInvalidSettingsWithDefaultValues((Values)Json.ReadObject(file));
+                }
+                catch(SerializationException)
+                {
+                    return DefaultValues;
+                }
             }
         }
 
