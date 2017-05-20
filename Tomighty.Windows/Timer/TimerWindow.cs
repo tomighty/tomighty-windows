@@ -36,7 +36,7 @@ namespace Tomighty.Windows.Timer
             SetTransparentBackground(closeButton);
             Icon = Properties.Resources.icon_tomato_red;
 
-            timeLabel.Font = new Font(SystemFonts.DefaultFont.FontFamily, 22f);
+            timeLabel.Font = new Font(SystemFonts.DefaultFont.FontFamily, 32f);
 
             UpdateTimeDisplayDelegate = (text) => timeLabel.Text = text;
             UpdateTitleDelegate = (text) => titleLabel.Text = text;
