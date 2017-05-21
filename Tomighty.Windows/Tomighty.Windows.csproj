@@ -54,8 +54,7 @@
     <StartupObject>Tomighty.Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\icon_tomato_red.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
