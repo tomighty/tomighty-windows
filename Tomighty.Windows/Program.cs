@@ -22,7 +22,14 @@ namespace Tomighty.Windows
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) => HandleUnhandledException(args.ExceptionObject as Exception);
+            Application.ThreadException += (sender, args) => HandleUnhandledException(args.Exception);
             Application.Run(new TomightyApplication());
+        }
+
+        private static void HandleUnhandledException(Exception exception)
+        {
+            new ErrorReportWindow(exception).Show();
         }
     }
 }
