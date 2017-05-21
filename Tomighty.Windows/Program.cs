@@ -6,12 +6,7 @@
 //
 
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
-using Tomighty.Windows.Notifications;
-using Tomighty.Windows.Preferences;
-using Tomighty.Windows.Timer;
-using Tomighty.Windows.Tray;
 
 namespace Tomighty.Windows
 {
