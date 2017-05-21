@@ -25,6 +25,7 @@ namespace Tomighty.Windows.About
 
             titleLabel.Text = $"Tomighty {version.Major}.{version.Minor}.{version.Build}";
             licenseTextBox.Text = File.ReadAllText(@"LICENSE.txt");
+            productVersionTextBox.Text = Version.Product;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
