@@ -7,16 +7,19 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace Tomighty.Windows
 {
     internal class Directories
     {
+        public static string ProgramLocation => Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
         public static string AppData
         {
             get
             {
-                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tomighty");
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Tomighty");
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 return path;

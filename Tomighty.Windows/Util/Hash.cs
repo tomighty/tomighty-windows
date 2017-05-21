@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -18,6 +19,13 @@ namespace Tomighty.Windows.Util
             var sha = new SHA1CryptoServiceProvider();
             var data = Encoding.UTF8.GetBytes(s);
             var hash = sha.ComputeHash(data);
+            return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
+        }
+
+        public static string Sha256(Stream stream)
+        {
+            var sha = new SHA256CryptoServiceProvider();
+            var hash = sha.ComputeHash(stream);
             return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
         }
     }

@@ -42,7 +42,7 @@ namespace Tomighty.Windows
             var client = new HttpClient();
             var json = ToJson(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var task = client.PostAsync("https://tomighty-errors.herokuapp.com", content);
+            var task = client.PostAsync(URLs.ErrorReport, content);
 
             task.Wait();
 

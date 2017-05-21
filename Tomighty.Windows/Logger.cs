@@ -1,18 +1,22 @@
 ﻿using System;
 using System.IO;
-using Tomighty.Windows;
 
-namespace Tomighty.Update.Swap
+namespace Tomighty.Windows
 {
-    class Logger
+    class Logger : IDisposable
     {
-        private const long MaxFileSize = 1048576; //1MB
+        private const long MaxFileSize = 1024 * 512; //512KB
 
-        private static StreamWriter writer = new StreamWriter(GetFile());
+        private readonly StreamWriter writer;
 
-        private static FileStream GetFile()
+        public Logger(string name)
         {
-            var path = Path.Combine(Directories.AppData, "update.log");
+            writer = new StreamWriter(GetFile(name + ".log"));
+        }
+
+        private FileStream GetFile(string name)
+        {
+            var path = Path.Combine(Directories.AppData, name);
 
             if (HasReachedSizeLimit(path))
             {
@@ -22,38 +26,44 @@ namespace Tomighty.Update.Swap
                 }
                 catch
                 {
-                    //That's ok, let's not disrupt the update process just because
+                    //That's ok, let's not break the program just because
                     //we can't delete the log file
                 }
             }
             return new FileStream(path, FileMode.Append);
         }
 
-        private static bool HasReachedSizeLimit(string filepath)
+        private bool HasReachedSizeLimit(string filepath)
         {
             return File.Exists(filepath) 
                 && new FileInfo(filepath).Length > MaxFileSize;
         }
 
-        private static void Log(string level, string msg)
+        private void Log(string level, string msg)
         {
             writer.WriteLine($"{DateTimeOffset.Now.ToString()} [{level}] {msg}");
             writer.Flush();
         }
 
-        public static void Info(string msg)
+        public void Info(string msg)
         {
             Log("INFO", msg);
         }
 
-        public static void Error(string msg)
+        public void Error(string msg)
         {
             Log("ERROR", msg);
         }
 
-        public static void Error(Exception e)
+        public void Error(Exception e)
         {
             Error(e.ToString());
+        }
+
+        public void Dispose()
+        {
+            if (writer != null)
+                writer.Close();
         }
     }
 }

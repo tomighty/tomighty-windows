@@ -58,7 +58,8 @@ namespace Tomighty.Windows.Preferences
             LongBreakDuration = Duration.InMinutes(15).Seconds,
             MaxPomodoroCount = 4,
             ShowToastNotifications = true,
-            PlaySoundNotifications = true
+            PlaySoundNotifications = true,
+            AutoUpdate = true
         };
 
         public Duration GetIntervalDuration(IntervalType intervalType)
@@ -94,6 +95,12 @@ namespace Tomighty.Windows.Preferences
             get { return values.PlaySoundNotifications; }
             set { values.PlaySoundNotifications = value; }
         }
+        
+        public bool AutoUpdate
+        {
+            get { return values.AutoUpdate; }
+            set { values.AutoUpdate = value; }
+        }
 
         public void Update(Action<IMutableUserPreferences> action)
         {
@@ -113,6 +120,7 @@ namespace Tomighty.Windows.Preferences
             [DataMember] public int MaxPomodoroCount { get; set; }
             [DataMember] public bool ShowToastNotifications { get; set; }
             [DataMember] public bool PlaySoundNotifications { get; set; }
+            [DataMember] public bool AutoUpdate { get; set; }
         }
     }
 }

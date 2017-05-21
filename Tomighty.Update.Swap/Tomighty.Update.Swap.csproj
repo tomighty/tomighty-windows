@@ -51,7 +51,9 @@
     <Compile Include="..\Tomighty.Windows\Directories.cs">
       <Link>Directories.cs</Link>
     </Compile>
-    <Compile Include="Logger.cs" />
+    <Compile Include="..\Tomighty.Windows\Logger.cs">
+      <Link>Logger.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Properties\Settings.settings">

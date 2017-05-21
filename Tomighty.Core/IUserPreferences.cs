@@ -15,6 +15,7 @@ namespace Tomighty
         int MaxPomodoroCount { get; }
         bool ShowToastNotifications { get; }
         bool PlaySoundNotifications { get; }
+        bool AutoUpdate { get; }
 
         void Update(Action<IMutableUserPreferences> action);
     }

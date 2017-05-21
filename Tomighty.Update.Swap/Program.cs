@@ -4,41 +4,45 @@ using System.IO;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Tomighty.Windows;
 
 namespace Tomighty.Update.Swap
 {
     static class Program
     {
+        private static readonly Logger logger = new Logger("swap");
+
         [STAThread]
         static void Main()
         {
             string[] args = Environment.GetCommandLineArgs();
 
-            if (args.Length != 4)
+            if (args.Length != 5)
             {
-                Logger.Error($"Wrong number of arguments: {args.Length}, exiting now");
+                logger.Error($"Wrong number of arguments: {args.Length}, exiting now");
                 return;
             }
 
             var processId = args[1];
             var exePath = args[2];
             var sourcePackage = args[3];
+            var restart = args[4];
 
             if (!IsInteger(processId))
             {
-                Logger.Error($"Invalid process id: {processId}");
+                logger.Error($"Invalid process id: {processId}");
                 return;
             }
 
             if (!File.Exists(exePath))
             {
-                Logger.Error($"File not found: {exePath}");
+                logger.Error($"File not found: {exePath}");
                 return;
             }
 
             if (!File.Exists(sourcePackage))
             {
-                Logger.Error($"File not found: {sourcePackage}");
+                logger.Error($"File not found: {sourcePackage}");
                 return;
             }
 
@@ -46,40 +50,56 @@ namespace Tomighty.Update.Swap
 
             try
             {
-                Swap(int.Parse(processId), exePath, sourcePackage, targetDir);
+                Swap(int.Parse(processId), exePath, sourcePackage, targetDir, restart == "true");
             }
             catch (Exception e)
             {
-                Logger.Error(e);
+                logger.Error(e);
             }
         }
 
-        private static void Swap(int processId, string exePath, string sourcePackage, string targetDir)
+        private static void Swap(int processId, string exePath, string sourcePackage, string targetDir, bool restart)
         {
             try
             {
-                Logger.Info($"Waiting for process {processId} to exit");
+                logger.Info($"Waiting for process {processId} to exit");
                 Process.GetProcessById(processId).WaitForExit();
 
-                Logger.Info($"Process {processId} has exited");
+                logger.Info($"Process {processId} has exited");
             }
             catch (ArgumentException)
             {
-                Logger.Info($"Process {processId} doesn't exist, probably exited");
+                logger.Info($"Process {processId} doesn't exist, probably exited");
             }
 
             Thread.Sleep(500);
 
-            Logger.Info($"Deleting directory: {targetDir}");
-            new DirectoryInfo(targetDir).Delete(true);
+            logger.Info($"Deleting directory contents: {targetDir}");
+            DeleteDirectoryContents(targetDir);
 
-            Logger.Info($"Extracting files from `{sourcePackage}` into `{targetDir}`");
+            logger.Info($"Extracting files from `{sourcePackage}` into `{targetDir}`");
             ZipFile.ExtractToDirectory(sourcePackage, targetDir);
 
-            Logger.Info($"Starting process {exePath}");
-            Process.Start(exePath);
+            if (restart)
+            {
+                logger.Info($"Starting process {exePath}");
+                Process.Start(exePath);
+            }
 
-            Logger.Info($"Done");
+            logger.Info($"Done");
+        }
+
+        private static void DeleteDirectoryContents(string targetDir)
+        {
+            foreach (var file in Directory.GetFiles(targetDir))
+            {
+                File.Delete(file);
+            }
+
+            foreach (var dir in Directory.GetDirectories(targetDir))
+            {
+                new DirectoryInfo(dir).Delete(true);
+            }
         }
 
         private static bool IsInteger(string s)
