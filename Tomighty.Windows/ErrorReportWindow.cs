@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -63,7 +62,7 @@ namespace Tomighty.Windows
         {
             return new ReportData
             {
-                version = "test",
+                version = Version.Product,
                 machine_id = "foo",
                 error = errorDescription.Text
             };

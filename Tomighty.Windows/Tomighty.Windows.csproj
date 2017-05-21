@@ -125,6 +125,7 @@
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tray\TrayIconController.cs" />
+    <Compile Include="Version.cs" />
     <EmbeddedResource Include="About\AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </EmbeddedResource>
