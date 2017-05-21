@@ -1,38 +1,19 @@
 @echo off
 
-set version=%1
-
-echo.
-echo ~~~~~~~~~~~~~~~~~~~~~~~
-echo %version%
-echo ~~~~~~~~~~~~~~~~~~~~~~~
-echo.
-
-if "%version%"=="" (goto use_latest_tagname_as_version_number) else goto begin
-
-
-
-:use_latest_tagname_as_version_number
-
-for /f %%i in ('git rev-list --tags --max-count=1') do set commit=%%i
-for /f %%i in ('git describe --tags %commit%') do set version=%%i
-
-
-
-:begin
-
 echo ==========================================================================
-echo Building Tomighty %version%
+echo Building Tomighty
 echo ==========================================================================
 echo.
 
 msbuild Tomighty.sln /t:rebuild /p:Configuration=Release
 
+set tag=%1
 
+if "%tag%"=="" (for /f %%i in ('git rev-parse --short HEAD') do set tag=%%i)
 
-:package
+for /f %%i in ('powershell -noprofile -executionpolicy bypass "(Get-Item Tomighty.Windows\bin\Release\Tomighty.Windows.exe).VersionInfo.FileVersion"') do set version=%%i
 
-set dirname=tomighty-windows-%version%
+set dirname=tomighty-windows-%version%-%tag%
 set zipfile=dist\%dirname%.zip
 set src=Tomighty.Windows\bin\Release
 set dest=build\%dirname%
@@ -63,8 +44,6 @@ xcopy /f %src%\Microsoft.Toolkit.Uwp.Notifications.dll %dest%
 xcopy /f /s %src%\Resources %dest%\Resources
 
 powershell -executionpolicy bypass -file pack.ps1 "%dest%" "%zipfile%"
-
-
 
 echo.
 echo --------------------------------------------------------------------------

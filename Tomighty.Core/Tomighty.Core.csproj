@@ -36,6 +36,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Events\PomodoroCompleted.cs" />
     <Compile Include="Events\PomodoroCountChanged.cs" />
     <Compile Include="Events\TimeElapsed.cs" />
