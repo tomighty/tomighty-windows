@@ -65,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,6 +87,7 @@
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="About\AboutWindowPresenter.cs" />
+    <Compile Include="Directories.cs" />
     <Compile Include="ErrorReportWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +95,7 @@
       <DependentUpon>ErrorReportWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="IntervalTypeExtensions.cs" />
+    <Compile Include="Host.cs" />
     <Compile Include="Notifications\SoundNotificationPlayer.cs" />
     <Compile Include="Preferences\UserPreferencesPresenter.cs" />
     <Compile Include="Tray\ITrayMenu.cs" />
@@ -125,6 +128,7 @@
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tray\TrayIconController.cs" />
+    <Compile Include="Util\Hash.cs" />
     <Compile Include="Version.cs" />
     <EmbeddedResource Include="About\AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>

@@ -63,7 +63,7 @@ namespace Tomighty.Windows
             return new ReportData
             {
                 version = Version.Product,
-                machine_id = "foo",
+                host_id = Host.Id,
                 error = errorDescription.Text
             };
         }
@@ -90,7 +90,7 @@ namespace Tomighty.Windows
         private class ReportData
         {
             [DataMember] public string version { get; set; }
-            [DataMember] public string machine_id { get; set; }
+            [DataMember] public string host_id { get; set; }
             [DataMember] public string error { get; set; }
         }
     }

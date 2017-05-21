@@ -19,7 +19,15 @@ namespace Tomighty.Windows
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => HandleUnhandledException(args.ExceptionObject as Exception);
             Application.ThreadException += (sender, args) => HandleUnhandledException(args.Exception);
-            Application.Run(new TomightyApplication());
+
+            try
+            {
+                Application.Run(new TomightyApplication());
+            }
+            catch(Exception e)
+            {
+                Application.Run(new ErrorReportWindow(e));
+            }
         }
 
         private static void HandleUnhandledException(Exception exception)

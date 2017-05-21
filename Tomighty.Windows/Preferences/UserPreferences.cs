@@ -14,7 +14,7 @@ namespace Tomighty.Windows.Preferences
 {
     public class UserPreferences : IMutableUserPreferences
     {
-        private static readonly string FilePath = Path.Combine(GetOrCreateApplicationDirectory(), "preferences.json");
+        private static readonly string FilePath = Path.Combine(Directories.AppData, "preferences.json");
         private static readonly DataContractJsonSerializer Json = new DataContractJsonSerializer(typeof(Values));
 
         private readonly Values values;
@@ -60,14 +60,6 @@ namespace Tomighty.Windows.Preferences
             ShowToastNotifications = true,
             PlaySoundNotifications = true
         };
-
-        private static string GetOrCreateApplicationDirectory()
-        {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tomighty");
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            return path;
-        }
 
         public Duration GetIntervalDuration(IntervalType intervalType)
         {
