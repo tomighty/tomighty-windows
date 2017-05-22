@@ -19,7 +19,7 @@ namespace Tomighty.Windows
 {
     internal class AutoUpdate
     {
-        private const int CheckIntervalInHours = 24;
+        private const int CheckIntervalInHours = 72;
 
         private static readonly Logger logger = new Logger("update");
 
