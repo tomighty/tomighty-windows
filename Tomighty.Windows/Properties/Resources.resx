@@ -181,4 +181,7 @@
   <data name="toast_template_first_run" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Toasts\first-run.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="toast_template_app_updated" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Toasts\app-updated.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

@@ -86,6 +86,8 @@ namespace Tomighty.Update.Swap
                 Process.Start(exePath);
             }
 
+            StartupEventFlags.Flags.TurnOn(StartupEventFlags.AppUpdatedFlag);
+
             logger.Info($"Done");
         }
 
