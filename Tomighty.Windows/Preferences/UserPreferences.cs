@@ -5,22 +5,23 @@
 //  http://www.apache.org/licenses/LICENSE-2.0.txt
 //
 
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace Tomighty.Windows.Preferences
 {
     public class UserPreferences : IMutableUserPreferences
     {
-        private static readonly string FilePath = Path.Combine(GetOrCreateApplicationDirectory(), "preferences.json");
+        private static readonly string FilePath = Path.Combine(Directories.AppData, "preferences.json");
+        private static readonly DataContractJsonSerializer Json = new DataContractJsonSerializer(typeof(Values));
 
         private readonly Values values;
 
         public UserPreferences()
         {
-            values = ReadFromFile() ?? GetDefaultValues();
+            values = ReadFromFile() ?? DefaultValues;
         }
 
         private static Values ReadFromFile()
@@ -28,30 +29,38 @@ namespace Tomighty.Windows.Preferences
             if (!File.Exists(FilePath))
                 return null;
 
-            var json = File.ReadAllText(FilePath);
-            return JsonConvert.DeserializeObject<Values>(json);
-        }
-
-        private static Values GetDefaultValues()
-        {
-            return new Values
+            using (var file = File.OpenRead(FilePath))
             {
-                PomodoroDuration = Duration.InMinutes(25).Seconds,
-                ShortBreakDuration = Duration.InMinutes(5).Seconds,
-                LongBreakDuration = Duration.InMinutes(15).Seconds,
-                MaxPomodoroCount = 4,
-                ShowToastNotifications = true,
-                PlaySoundNotifications = true
-            };
+                try
+                {
+                    return ReplaceInvalidSettingsWithDefaultValues((Values)Json.ReadObject(file));
+                }
+                catch(SerializationException)
+                {
+                    return DefaultValues;
+                }
+            }
         }
 
-        private static string GetOrCreateApplicationDirectory()
+        private static Values ReplaceInvalidSettingsWithDefaultValues(Values values)
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tomighty");
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            return path;
+            if (values.PomodoroDuration <= 0) values.PomodoroDuration = DefaultValues.PomodoroDuration;
+            if (values.ShortBreakDuration <= 0) values.ShortBreakDuration = DefaultValues.ShortBreakDuration;
+            if (values.LongBreakDuration <= 0) values.LongBreakDuration = DefaultValues.LongBreakDuration;
+            if (values.MaxPomodoroCount <= 0) values.MaxPomodoroCount = DefaultValues.MaxPomodoroCount;
+            return values;
         }
+
+        private static Values DefaultValues => new Values
+        {
+            PomodoroDuration = Duration.InMinutes(25).Seconds,
+            ShortBreakDuration = Duration.InMinutes(5).Seconds,
+            LongBreakDuration = Duration.InMinutes(15).Seconds,
+            MaxPomodoroCount = 4,
+            ShowToastNotifications = true,
+            PlaySoundNotifications = true,
+            AutoUpdate = true
+        };
 
         public Duration GetIntervalDuration(IntervalType intervalType)
         {
@@ -86,22 +95,32 @@ namespace Tomighty.Windows.Preferences
             get { return values.PlaySoundNotifications; }
             set { values.PlaySoundNotifications = value; }
         }
+        
+        public bool AutoUpdate
+        {
+            get { return values.AutoUpdate; }
+            set { values.AutoUpdate = value; }
+        }
 
         public void Update(Action<IMutableUserPreferences> action)
         {
             action(this);
-            var json = JsonConvert.SerializeObject(values, Formatting.Indented);
-            File.WriteAllText(FilePath, json);
+            using (var file = new FileStream(FilePath, FileMode.Create))
+            {
+                Json.WriteObject(file, values);
+            }
         }
 
+        [DataContract]
         private class Values
         {
-            public int PomodoroDuration { get; set; }
-            public int ShortBreakDuration { get; set; }
-            public int LongBreakDuration { get; set; }
-            public int MaxPomodoroCount { get; set; }
-            public bool ShowToastNotifications { get; set; }
-            public bool PlaySoundNotifications { get; set; }
+            [DataMember] public int PomodoroDuration { get; set; }
+            [DataMember] public int ShortBreakDuration { get; set; }
+            [DataMember] public int LongBreakDuration { get; set; }
+            [DataMember] public int MaxPomodoroCount { get; set; }
+            [DataMember] public bool ShowToastNotifications { get; set; }
+            [DataMember] public bool PlaySoundNotifications { get; set; }
+            [DataMember] public bool AutoUpdate { get; set; }
         }
     }
 }

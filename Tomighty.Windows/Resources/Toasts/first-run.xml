@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<toast launch="tomighty">
+  <visual>
+    <binding template="ToastGeneric">
+      <text>First time using Tomighty?</text>
+      <text>There should be a tomato-shaped icon somewhere in your task bar.</text>
+      <text>Start by clicking on it. The left button shows the menu.</text>
+      <image src='{image_src}' placement='appLogoOverride'/>
+    </binding>
+  </visual>
+  <actions>
+    <action content="Got It" arguments="dismiss" />
+  </actions>
+  <audio src="ms-winsoundevent:Notification.Default"/>
+</toast>

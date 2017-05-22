@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<toast launch="tomighty">
+  <visual>
+    <binding template="ToastGeneric">
+      <text>Tomighty Updated</text>
+      <text>A new version of Tomighty has been automatically installed</text>
+      <image src='{image_src}' placement='appLogoOverride'/>
+    </binding>
+  </visual>
+  <actions>
+    <action content="OK" arguments="dismiss" />
+  </actions>
+  <audio src="ms-winsoundevent:Notification.Default"/>
+</toast>

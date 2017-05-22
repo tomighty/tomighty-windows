@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="FakeEventHub.cs" />
     <Compile Include="PomodoroEngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

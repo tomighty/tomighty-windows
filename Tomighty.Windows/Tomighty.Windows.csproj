@@ -28,6 +28,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,34 +54,31 @@
     <StartupObject>Tomighty.Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\icon_tomato_red.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Toolkit.Uwp.Notifications.1.0.0\lib\dotnet\Microsoft.Toolkit.Uwp.Notifications.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
     <Reference Include="Windows.Data" />
     <Reference Include="Windows.Foundation" />
     <Reference Include="Windows.UI" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="About\AboutWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,9 +86,23 @@
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="About\AboutWindowPresenter.cs" />
+    <Compile Include="AutoUpdate.cs" />
+    <Compile Include="Directories.cs" />
+    <Compile Include="ErrorReportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorReportWindow.Designer.cs">
+      <DependentUpon>ErrorReportWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events.cs" />
     <Compile Include="IntervalTypeExtensions.cs" />
+    <Compile Include="Host.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Notifications\SoundNotificationPlayer.cs" />
     <Compile Include="Preferences\UserPreferencesPresenter.cs" />
+    <Compile Include="Flags.cs" />
+    <Compile Include="StartupEventFlags.cs" />
+    <Compile Include="StartupEvents.cs" />
     <Compile Include="Tray\ITrayMenu.cs" />
     <Compile Include="Tray\ITrayMenuMutator.cs" />
     <Compile Include="Tray\TrayMenu.cs" />
@@ -120,8 +133,14 @@
       <DependentUpon>UserPreferencesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tray\TrayIconController.cs" />
+    <Compile Include="URLs.cs" />
+    <Compile Include="Util\Hash.cs" />
+    <Compile Include="Version.cs" />
     <EmbeddedResource Include="About\AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorReportWindow.resx">
+      <DependentUpon>ErrorReportWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Timer\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>
@@ -155,6 +174,7 @@
     <None Include="Resources\icon_tomato_red.ico" />
     <None Include="Resources\icon_tomato_white.ico" />
     <Content Include="Resources\Audio\deskbell.wav" />
+    <Content Include="Resources\image_warning.png" />
     <Content Include="Resources\image_clock.tiff" />
     <Content Include="Resources\image_tomato_black.tiff" />
     <Content Include="Resources\image_tomato_blue.tiff" />
@@ -170,6 +190,12 @@
     <None Include="Resources\image_unpinned.png" />
     <None Include="Resources\image_pinned.png" />
     <None Include="Resources\image_x.png" />
+    <Content Include="Resources\Toasts\app-updated.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Resources\Toasts\first-run.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\Toasts\interval-completed.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -203,6 +229,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

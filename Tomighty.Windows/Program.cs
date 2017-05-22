@@ -6,12 +6,7 @@
 //
 
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
-using Tomighty.Windows.Notifications;
-using Tomighty.Windows.Preferences;
-using Tomighty.Windows.Timer;
-using Tomighty.Windows.Tray;
 
 namespace Tomighty.Windows
 {
@@ -22,7 +17,22 @@ namespace Tomighty.Windows
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TomightyApplication());
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) => HandleUnhandledException(args.ExceptionObject as Exception);
+            Application.ThreadException += (sender, args) => HandleUnhandledException(args.Exception);
+
+            try
+            {
+                Application.Run(new TomightyApplication());
+            }
+            catch(Exception e)
+            {
+                Application.Run(new ErrorReportWindow(e));
+            }
+        }
+
+        private static void HandleUnhandledException(Exception exception)
+        {
+            new ErrorReportWindow(exception).Show();
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Tomighty.Windows.About
             this.urlLabel = new System.Windows.Forms.Label();
             this.licenseTextBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
+            this.productVersionTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -70,12 +71,12 @@ namespace Tomighty.Windows.About
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.licenseTextBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.licenseTextBox.Location = new System.Drawing.Point(18, 72);
+            this.licenseTextBox.Location = new System.Drawing.Point(18, 91);
             this.licenseTextBox.Multiline = true;
             this.licenseTextBox.Name = "licenseTextBox";
             this.licenseTextBox.ReadOnly = true;
             this.licenseTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.licenseTextBox.Size = new System.Drawing.Size(606, 301);
+            this.licenseTextBox.Size = new System.Drawing.Size(606, 282);
             this.licenseTextBox.TabIndex = 3;
             this.licenseTextBox.WordWrap = false;
             // 
@@ -90,11 +91,25 @@ namespace Tomighty.Windows.About
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // AboutForm
+            // productVersionTextBox
+            // 
+            this.productVersionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productVersionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.productVersionTextBox.Location = new System.Drawing.Point(18, 72);
+            this.productVersionTextBox.Name = "productVersionTextBox";
+            this.productVersionTextBox.ReadOnly = true;
+            this.productVersionTextBox.Size = new System.Drawing.Size(606, 13);
+            this.productVersionTextBox.TabIndex = 4;
+            this.productVersionTextBox.Text = "<product version>";
+            this.productVersionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AboutWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 414);
+            this.Controls.Add(this.productVersionTextBox);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.licenseTextBox);
             this.Controls.Add(this.urlLabel);
@@ -102,7 +117,7 @@ namespace Tomighty.Windows.About
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AboutForm";
+            this.Name = "AboutWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About Tomighty";
             this.Load += new System.EventHandler(this.AboutForm_Load);
@@ -117,5 +132,6 @@ namespace Tomighty.Windows.About
         private System.Windows.Forms.Label urlLabel;
         private System.Windows.Forms.TextBox licenseTextBox;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.TextBox productVersionTextBox;
     }
 }

@@ -22,6 +22,18 @@ namespace Tomighty.Windows.Notifications
         private static readonly XmlDocument PomodoroCompletedTakeLongBreakTemplate = FillIntervalCompletedTemplate("Pomodoro", RedTomatoImage, TimerAction.StartLongBreak);
         private static readonly XmlDocument ShortBreakCompletedTemplate = FillIntervalCompletedTemplate("Short break", GreenTomatoImage, TimerAction.StartPomodoro);
         private static readonly XmlDocument LongBreakCompletedTemplate = FillIntervalCompletedTemplate("Long break", BlueTomatoImage, TimerAction.StartPomodoro);
+        private static readonly XmlDocument FirstRunTemplate = ToXmlDocument(Properties.Resources.toast_template_first_run.Replace("{image_src}", RedTomatoImage));
+        private static readonly XmlDocument AppUpdatedTemplate = ToXmlDocument(Properties.Resources.toast_template_app_updated.Replace("{image_src}", RedTomatoImage));
+
+        public static ToastNotification FirstRun()
+        {
+            return new ToastNotification(FirstRunTemplate);
+        }
+
+        public static ToastNotification AppUpdated()
+        {
+            return new ToastNotification(AppUpdatedTemplate);
+        }
 
         public static ToastNotification IntervalCompleted(IntervalType completedIntervalType, IntervalType suggestedBreakType)
         {
