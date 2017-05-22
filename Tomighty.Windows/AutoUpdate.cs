@@ -75,6 +75,10 @@ namespace Tomighty.Windows
             {
                 File.SetLastWriteTime(LastDownloadedVersionFile, DateTime.Now);
             }
+            else
+            {
+                File.Create(LastDownloadedVersionFile).Close();
+            }
         }
 
         private async Task Check()
