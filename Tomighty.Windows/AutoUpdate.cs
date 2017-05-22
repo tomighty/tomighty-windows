@@ -19,7 +19,7 @@ namespace Tomighty.Windows
 {
     internal class AutoUpdate
     {
-        private const int CheckIntervalInHours = 24;
+        private const int CheckIntervalInHours = 72;
 
         private static readonly Logger logger = new Logger("update");
 
@@ -74,6 +74,10 @@ namespace Tomighty.Windows
             if (File.Exists(LastDownloadedVersionFile))
             {
                 File.SetLastWriteTime(LastDownloadedVersionFile, DateTime.Now);
+            }
+            else
+            {
+                File.Create(LastDownloadedVersionFile).Close();
             }
         }
 
