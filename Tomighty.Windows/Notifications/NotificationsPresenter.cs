@@ -6,6 +6,7 @@
 //
 
 using Tomighty.Events;
+using Tomighty.Windows.Events;
 using Windows.UI.Notifications;
 
 namespace Tomighty.Windows.Notifications
@@ -20,7 +21,14 @@ namespace Tomighty.Windows.Notifications
         {
             this.pomodoroEngine = pomodoroEngine;
             this.userPreferences = userPreferences;
+            eventHub.Subscribe<FirstRun>(OnFirstRun);
             eventHub.Subscribe<TimerStopped>(OnTimerStopped);
+        }
+
+        private void OnFirstRun(FirstRun @event)
+        {
+            var toast = Toasts.FirstRun();
+            toastNotifier.Show(toast);
         }
 
         private void OnTimerStopped(TimerStopped @event)

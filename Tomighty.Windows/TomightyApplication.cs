@@ -41,6 +41,8 @@ namespace Tomighty.Windows
             trayMenu.OnPreferencesClick((sender, e) => userPreferencesPresenter.Show());
 
             ThreadExit += (sender, e) => trayIcon.Dispose();
+
+            new StartupEvents(eventHub);
         }
         
         private static NotifyIcon CreateTrayIcon(ITrayMenu trayMenu)

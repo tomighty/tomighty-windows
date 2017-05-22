@@ -94,11 +94,13 @@
     <Compile Include="ErrorReportWindow.Designer.cs">
       <DependentUpon>ErrorReportWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\FirstRun.cs" />
     <Compile Include="IntervalTypeExtensions.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Notifications\SoundNotificationPlayer.cs" />
     <Compile Include="Preferences\UserPreferencesPresenter.cs" />
+    <Compile Include="StartupEvents.cs" />
     <Compile Include="Tray\ITrayMenu.cs" />
     <Compile Include="Tray\ITrayMenuMutator.cs" />
     <Compile Include="Tray\TrayMenu.cs" />
@@ -186,6 +188,9 @@
     <None Include="Resources\image_unpinned.png" />
     <None Include="Resources\image_pinned.png" />
     <None Include="Resources\image_x.png" />
+    <Content Include="Resources\Toasts\first-run.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\Toasts\interval-completed.xml">
       <SubType>Designer</SubType>
     </Content>
